@@ -109,7 +109,7 @@ standard output.
 
 The description of the assignment is done as follows:
 
--   in Section [*Model](#model) we describe the model part, i.e., the
+-   in Section [*Model*](#model) we describe the model part, i.e., the
     components that define the logic of the traffic simulator.
 
 -   in Section [*Control*](#control) we describe the
