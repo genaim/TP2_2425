@@ -1558,7 +1558,7 @@ comandos:
      -t,--ticks <arg>    Ticks to the simulator's main loop (default
                          value is 10).
 
-3.25ex -1em Examples.
+Examples.
 
       java Main -i eventsfile.json -o output.json -t 100
       java Main -i eventsfile.json -t 100
