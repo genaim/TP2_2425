@@ -727,7 +727,7 @@ contiene al menos los siguientes atributos (que no pueden ser públicos):
     qué carretera seleccionar para llegar al cruce `j`.
 
 -   *lista de colas* (de tipo
-    `List<List<Vehicle$\sf >>$`): una lista de colas para
+    `List<List<Vehicle>>`): una lista de colas para
     las carreteras entrantes -- la cola $i$-ésima (representada como
     `List<Vehicle>`) corresponde a la $i$-ésima carretera
     en la *lista de carreteras entrantes*. Se recomienda guardar un mapa
