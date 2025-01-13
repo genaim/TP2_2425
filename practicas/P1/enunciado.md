@@ -503,9 +503,9 @@ siguientes métodos:
 -   `reduceTotalContamination`: que reduce la contaminación
     total al valor:
 
-    \textsf{((100-x)*tc)/100}
+        ((100-x)*tc)/100
 
-    donde \textsf{tc} es la contaminación total actual y
+    donde `tc` es la contaminación total actual y
     `x` depende de las condiciones atmosféricas: 2 en
     caso de tiempo `SUNNY` (soleado), 3 si el tiempo es
     `CLOUDY` (nublado), 10 en caso de que el tiempo sea
@@ -515,14 +515,14 @@ siguientes métodos:
 
 -   `updateSpeedLimit`: si la contaminación total excede el
     lı́mite de contaminación, entonces pone el lı́mite de la velocidad al
-    50\% de la velocidad máxima (es decir a
+    50% de la velocidad máxima (es decir a
     `maxSpeed/2`). En otro caso pone el lı́mite de la
     velocidad a la velocidad máxima.
 
 -   `calculateVehicleSpeed`: calcula la velocidad del
     vehı́culo como la velocidad lı́mite de la carretera. Si el tiempo es
-    `STORM` lo reduce en un 20\% (es decir,
-    `(speedLimit\*8)/10`).
+    `STORM` lo reduce en un 20% (es decir,
+    `(speedLimit*8)/10`).
 
 Esta clase de carreteras están dentro de las ciudades y se implementan a
 través de la clase `CityRoad`, que extiende a
@@ -546,7 +546,7 @@ métodos:
 
 -   método `calculateVehicleSpeed`: que calcula la
     velocidad de un vehı́culo usando la expresión
-    `((11-f)\*s)/11`, donde `s` es la
+    `((11-f)*s)/11`, donde `s` es la
     velocidad lı́mite de la carretera y `f` es el grado de
     contaminación del vehı́culo.
 
@@ -958,7 +958,7 @@ la cola de eventos. Primero vamos a definir una clase abstracta
       abstract void execute(RoadMap map);
     }
 
-El campo `\_time` es el tiempo (o paso) en el cual este
+El campo `_time` es el tiempo (o paso) en el cual este
 evento tiene que ser ejecutado, y el método `execute` es el
 método al que el simulador llama para ejecutar el evento. La
 funcionalidad de este método se define en las subclases.
@@ -1211,12 +1211,12 @@ especı́fico. Podemos modelarla como una clase genérica
 
 Como se puede observar, su método `createInstance` recibe
 un objeto `JSON`, y si tiene clave `type` cuyo valor es igual al campo
-`\_type`, llama al método abstracto
+`_type`, llama al método abstracto
 `createTheInstance` con el valor de la clave `data` para
 crear el objeto actual. En otro caso devuelve `null` para
 indicar que es incapaz de reconocer la estructura `JSON`. Las clases que
 extienden a `Builder<T>` son las responsables de asignar
-un valor a `\_type` llamando a la constructora de la clase
+un valor a `_type` llamando a la constructora de la clase
 `Builder`, y también de definir el método
 `createTheInstance` para crear la instancia. Más tarde
 veremos algunos "builders" que necesitamos, pero primero vamos a
