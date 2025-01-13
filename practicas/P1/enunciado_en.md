@@ -137,7 +137,7 @@ managing the simulation.
 There are 3 types of simulated objects:
 
 -   vehicles, which can drive through roads and contaminate by emitting
-    \mathtt{CO}_2;
+    CO<sub>2</sub>;
 
 -   one-way roads on which vehicles travel, and they manage the speed of
     vehicles to reduce contamination, etc.;
@@ -188,7 +188,7 @@ Class `Vehicle` maintains (at least) the following
 information as *instance fields* in its state (recall that it is
 forbidden to declare fields as `public`):
 
--   *itinerary* (of type `List\<Junction\>`): a list of
+-   *itinerary* (of type `List<Junction>`): a list of
     junctions representing the vehicle's itinerary.
 
 -   *maximum speed* (of type `int`): the maximum speed at
@@ -212,10 +212,10 @@ forbidden to declare fields as `public`):
 
 -   *contamination class* (of type `int`): a number between
     0 and 10 (both inclusive) that is used to calculate the
-    \mathtt{CO}_2 emitted by the vehicle in each simulation step.
+    CO<sub>2</sub> emitted by the vehicle in each simulation step.
 
 -   *total contamination* (of type `int`): the total
-    \mathtt{CO}_2 emitted by the vehicle so far.
+    CO<sub>2</sub> emitted by the vehicle so far.
 
 -   *total traveled distance* (of type `int`): the total
     distance traveled by the vehicle.
@@ -315,7 +315,7 @@ package protected):
 
     where `id` is the vehicle's identifier; `speed` is its current
     speed; `distance` is the total distance traveled by the vehicle;
-    `co2` is the total \mathtt{CO}_2 emitted by the vehicle;
+    `co2` is the total CO<sub>2</sub> emitted by the vehicle;
     `class` is the contamination class of the vehicle; `status` is
     the status of the vehicle which can be `PENDING`, `TRAVELING`,
     `WAITING`, or `ARRIVED`; `road` is the identifier of the road
@@ -372,10 +372,10 @@ declare fields as `public`):
 
 -   *total contamination* (of type `int`): the total
     accumulated contamination of the road. I.e., the total
-    \mathtt{CO}_2 emitted by the vehicles that traveled on the road so
+    CO<sub>2</sub> emitted by the vehicles that traveled on the road so
     far.
 
--   *vehicles* (of type `List\<Vehicle\>`): a list of the
+-   *vehicles* (of type `List<Vehicle>`): a list of the
     vehicles that are currently traveling on the road -- **should always
     be sorted by vehicle location (descending order)**. Note that
     multiple vehicles can be at the same location, however, their order
@@ -418,7 +418,7 @@ protected):
     `null` and throw a corresponding exception otherwise.
 
 -   `void addContamination(int c)`: add `c`
-    units of \mathtt{CO}_2 to the total contamination of the road. It
+    units of CO<sub>2</sub> to the total contamination of the road. It
     should check that `c` is non-negative and throw a
     corresponding exception otherwise.
 
@@ -438,7 +438,7 @@ protected):
     road as follows:
 
     (1) calls `reduceTotalContamination` to reduce the
-        total contamination, i.e., some \mathtt{CO}_2 vanish.
+        total contamination, i.e., some CO<sub>2</sub> vanish.
 
     (2) calls `updateSpeedLimit` to set the speed limit for
         the current simulation step.
@@ -484,8 +484,8 @@ class called `InterCityRoad` that extends
 `simulator.model`. Its behavior is as follows:
 
 -   method `reduceTotalContamination` reduces the total
-    contamination to the value of `((100 - x) \* tc) /
-    100)` where \textsf{tc} is the current total
+    contamination to the value of `((100 - x) * tc) /
+    100)` where `tc` is the current total
     contamination and `x` depends on the weather
     conditions: 2 in case of `SUNNY` weather, 3 in case
     of `CLOUDY` weather, 10 in case of
@@ -493,13 +493,13 @@ class called `InterCityRoad` that extends
     weather, and 20 in case of a `STORM`.
 
 -   method `updateSpeedLimit` sets the speed limit to
-    50\% of the maximum speed (i.e., to `maxSpeed\*/2`)
+    50% of the maximum speed (i.e., to `maxSpeed*/2`)
     if the total contamination exceeds the contamination alarm limit,
     and to the maximum speed otherwise.
 
 -   method `calculateVehicleSpeed` calculates the speed of
-    a vehicle as to the speed limit of the road but reduced by 20\%
-    (i.e., `(speedLimit\*8)/10`) in case of a
+    a vehicle as to the speed limit of the road but reduced by 20%
+    (i.e., `(speedLimit*8)/10`) in case of a
     `STORM`.
 
 This kind of road models roads inside cities, and is implemented by a
@@ -513,7 +513,7 @@ Moreover, the reduction of contamination does not depend much on the
 weather as before. Its behavior is as follows:
 
 -   method `reduceTotalContamination` reduces the total
-    contamination by `x` \mathtt{CO}_2 units where
+    contamination by `x` CO<sub>2</sub> units where
     `x` depends on the weather conditions: 10 in case of
     `WINDY` weather or a `STORM`, and 2
     otherwise. Make sure that total contamination does not become
@@ -522,7 +522,7 @@ weather as before. Its behavior is as follows:
 -   the speed limit does not change, it is always the maximum speed.
 
 -   method `calculateVehicleSpeed` calculates the speed of
-    a vehicle using the expression `((11-f)\*s)/11`,
+    a vehicle using the expression `((11-f)*s)/11`,
     where `s` is the speed limit of the road and
     `f` is the contamination class of the vehicle.
 
@@ -571,8 +571,8 @@ which has a single method `chooseNextGreen` that receives:
 -   `qs`: a list of lists of vehicles, where the (inner)
     lists of vehicles represent queues. The i-th queue corresponds to
     the i-th road in the list `roads`. Note that we use
-    the type `List\<Vehicle\>` and not
-    `Queue\<Vehicle\>` to represent a queue since the
+    the type `List<Vehicle>` and not
+    `Queue<Vehicle>` to represent a queue since the
     interface `Queue` does not guarantee any order when the
     collection is iterated (and we want to iterate them in the order in
     which the elements were added).
@@ -609,7 +609,7 @@ Strategy `RoundRobinStrategy` behaves as follows:
     `currGreen` is -1), it gives green to the first one
     of in list of `roads` (i.e., it returns 0); otherwise
 
--   if `currTime-lastSwitchingTime \< timeSlot`, it keeps
+-   if `currTime-lastSwitchingTime < timeSlot`, it keeps
     the lights as they are (i.e., it returns `currGreen`);
     otherwise
 
@@ -627,7 +627,7 @@ Strategy `MostCrowdedStrategy` behaves as follows:
     the same maximal size, it picks the first one that it finds during
     the search.
 
--   if the `currTime-lastSwitchingTime \< timeSlot`, it
+-   if the `currTime-lastSwitchingTime < timeSlot`, it
     keeps the lights as they are (i.e., it returns
     `currGreen`); otherwise
 
@@ -672,22 +672,22 @@ Class `Junction` maintains (at least) the following
 information as *instance fields* in its state (recall that it is
 forbidden to declare fields as `public`):
 
--   *list of incoming roads* (of type `List\<Road\>`): a
+-   *list of incoming roads* (of type `List<Road>`): a
     list of all roads that enter the junction, i.e., the junction is
     their destination.
 
 -   *map of outgoing roads* (of type
-    `Map\<Junction,Road\>`): a map of outgoing roads, i.e.,
+    `Map<Junction,Road>`): a map of outgoing roads, i.e.,
     if `(j,r)` is a pair of key-value in the map, then the
     current junction is connected to junction `j` by road
     `r`. This is used to know which road to take to arrive
     at junction `j`.
 
--   *list of queues* (of type `List\<List\<Vehicle\>\>`): a
+-   *list of queues* (of type `List<List<Vehicle>>`): a
     list of queues for incoming roads -- the i-th queue (represented
-    as `List\<Vehicle\>`) corresponds to the i-th road in
+    as `List<Vehicle>`) corresponds to the i-th road in
     the *list of incoming roads*. It is also recommended to keep a
-    road-queue map (of type `Map\<Road,List\<Vehciles\>`)
+    road-queue map (of type `Map<Road,List<Vehciles>`)
     to make the search for the queue of a given road more efficient.
 
 -   *green light index* (of type `int`): the index of the
@@ -799,19 +799,19 @@ Class `RoadMap` maintains (at least) the following
 information as *instance fields* in its state (recall that it is
 forbidden to declare fields as `public`):
 
--   *list of junctions* of type `List\<Junction\>`.
+-   *list of junctions* of type `List<Junction>`.
 
--   *list of roads* of type `List\<Road\>`.
+-   *list of roads* of type `List<Road>`.
 
--   *list of vehicles* of type `List\<Vehicle\>`.
+-   *list of vehicles* of type `List<Vehicle>`.
 
--   *junctions map* (of type `Map\<String,Junction\>`): a
+-   *junctions map* (of type `Map<String,Junction>`): a
     map from junction identifiers to the corresponding objects.
 
--   *roads map* (of type `Map\<String,Road\>`: a map from
+-   *roads map* (of type `Map<String,Road>`: a map from
     road identifiers to the corresponding objects.
 
--   *vehicles map* (of type `Map\<String,Vehicle\>`): a map
+-   *vehicles map* (of type `Map<String,Vehicle>`): a map
     from vehicle identifiers to the corresponding objects.
 
 Note that we keep both lists and maps to: use the maps to search for an
@@ -858,13 +858,13 @@ package protected):
     vehicle with identifier `id`, and `null`
     if no such vehicle exists.
 
--   `public List\<Junction\> getJunctions()`: returns a
+-   `public List<Junction> getJunctions()`: returns a
     *read-only* version of the list of junctions.
 
--   `public List\<Roads\> getRoads()`: returns a
+-   `public List<Roads> getRoads()`: returns a
     *read-only* version of the list of roads.
 
--   `public List\<Vehicle\> getJunctions()`: returns a
+-   `public List<Vehicle> getJunctions()`: returns a
     *read-only* version of the list of vehicles.
 
 -   `void reset()`: clears all lists and maps.
@@ -920,7 +920,7 @@ We first define an abstract base-class `Event` (in package
       abstract void execute(RoadMap map);
     }
 
-Field `\_time` is the time at which this event should be
+Field `_time` is the time at which this event should be
 executed, and method `execute` is the one called by the
 simulator to execute the event. The functionality of this method is
 defined in subclasses.
@@ -1033,7 +1033,7 @@ forbidden to declare fields as `public`):
 -   *road-map* of type (of type `RoadMap`): a road-map in
     which all simulated objects are stored.
 
--   *list of events* (of type `List\<Event\>`): a list of
+-   *list of events* (of type `List<Event>`): a list of
     events to be executed, the list is sorted by the time of the events.
     If two events have the same time, the one that was added first goes
     before in the list -- to guarantee this use the class
@@ -1100,11 +1100,9 @@ given number of simulation steps.
 
 We will use `JSON` structures to describe events, and we will use
 factories to parse these structures and convert them to actual objects.
-In Section [1.6.1](#sec:factories){reference-type="ref"
-reference="sec:factories"} we describe the factories required to
+In Section [*Factories*](#factories) we describe the factories required to
 facilitate creating events from `JSON` structures; in
-Section [1.6](#sec:controller){reference-type="ref"
-reference="sec:controller"} we describe the controller, which is the
+Section [*The Controller*](#the-controller) we describe the controller, which is the
 class that allows loading events from an `InputStream` and
 executing the simulator for a given number of steps.
 
@@ -1116,7 +1114,7 @@ by step. All classes and interfaces should be placed in the package
 `simulator.factories`.
 
 We will model a factory by a generic interface
-`Factory\<T\>`:
+`Factory<T>`:
 
     package simulator.factories;
 
@@ -1148,7 +1146,7 @@ actually modifying its code.
 The basic element in a *builder based factory* is the *builder*, which
 is a class that can handle one case of those provided by the factory,
 i.e., create an instance of a specific type. We can model it as a
-generic class `Builder\<T\>`:
+generic class `Builder<T>`:
 
     package simulator.factories;
       
@@ -1179,12 +1177,12 @@ generic class `Builder\<T\>`:
 
 As can be seen, its method `createInstance` receives a
 `JSON` object, and if it has key `type` whose value is equal to the
-field `\_type`, it calls the abstract method
+field `_type`, it calls the abstract method
 `createTheInstance` with the value of key `data` to
 create the actual object, otherwise it returns `null` to
 indicate the it does not recognize this `JSON` structure. Classes that
-extend `Builder\<T\>` are responsible on assigning value to
-`\_type` by calling the constructor of class
+extend `Builder<T>` are responsible on assigning value to
+`_type` by calling the constructor of class
 `Builder`, and also on defining method
 `createTheInstance` to create the instance. Later we will
 describe several builders that we need, but let us first describe how
@@ -1231,7 +1229,7 @@ have invalid values.
 For this factory we need two builders,
 `RoundRobinStrategyBuilder` and
 `MostCrowdedStrategyBuilder`, both extend
-`Builder\<LightSwitchingStrategy\>` since they create
+`Builder<LightSwitchingStrategy>` since they create
 instances of classes that implement
 `LightSwitchingStrategy`.
 
@@ -1278,7 +1276,7 @@ the junction event builder below).
 For this factory we need two builders,
 `MoveFirstStrategyBuilder` and
 `MoveAllStrategyBuilder`, both extend
-`Builder\<DequeuingStrategy\>` since they create instances
+`Builder<DequeuingStrategy>` since they create instances
 of classes that implement `DequeuingStrategy`.
 
 Builder `MoveFirstStrategyBuilder` creates an instance of
@@ -1314,8 +1312,7 @@ corresponding factory as follows:
 #### Events Factory
 
 For this factory we need a builder for each kind of event that we have
-described in Section [1.5.3](#sec:events){reference-type="ref"
-reference="sec:events"}, all extend `Builder\<Event\>`
+described in Section [*Events*](#events), all extend `Builder<Event>`
 since they create instances of classes that extend `Event`.
 
 Builder `NewJunctionEventBuilder` creates an instance of
@@ -1453,7 +1450,7 @@ forbidden to declare fields as `public`):
 -   *traffic simulator* (of type `TrafficSimulator`): used
     to perform the simulation.
 
--   *events factory* (of type `Factory\<Event\>`): used to
+-   *events factory* (of type `Factory<Event>`): used to
     parse the events provided by the user.
 
 Class `Controller` has only one `public`
