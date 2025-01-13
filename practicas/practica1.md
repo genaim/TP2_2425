@@ -40,22 +40,20 @@ seguirlas obligatoriamente.
     **bin**. **Otros formatos (por ejemplo `7zip`, `rar`, etc.) no están
     permitidos**.
 
-## Análisis y creación de datos `JSON` en Java {#sec:json}
+## Análisis y creación de datos `JSON` en Java
 
 JavaScript Object Notation[^1] (`JSON`) es un formato estándar de
 fichero que utiliza texto y que permite almacenar propiedades de los
 objetos utilizando pares clave-valor y arrays de tipos de datos.
 Utilizaremos `JSON` para la entrada y salida del simulador. Una
 estructura `JSON` es un texto estructurado de la siguiente forma:
+   
+    { "key-1": value-1, ..., "key-n": value-n }
 
-::: center
-`{ "key`$_1$`": value`$_1$`, ..., "key`$_n$`": value`$_n$` }`
-:::
-
-donde `key`$_i$ es una secuencia de caracteres (que representa una
-clave) y `value`$_i$ es un valor `JSON` válido, es decir, un número, un
-*string*, otra estructura `JSON`, o un array `[o`$_1$`,…,o`$_k$`]`,
-donde `o`$_i$ es un valor `JSON` válido. Por ejemplo:
+donde `key-i` es una secuencia de caracteres (que representa una
+clave) y `value-i` es un valor `JSON` válido, es decir, un número, un
+*string*, otra estructura `JSON`, o un array `[o-1,…,o-k]`,
+donde `o-i` es un valor `JSON` válido. Por ejemplo:
 
     {
       "type" : "new_vehicle",
@@ -121,24 +119,22 @@ número determinado de unidades de tiempo (llamadas *ticks*) y, en cada
 *tick*, se mostrará el estado de la simulación, bien en la consola o en
 un fichero de texto.
 
-## El modelo {#sec:model}
+## El modelo 
 
 A lo largo de esta sección presentamos la lógica del simulador de
-tráfico. En la Sección [1.5.1](#sec:simobj){reference-type="ref"
-reference="sec:simobj"}, se muestran las diferentes clases necesarias
-para modelar los cruces, carreteras y vehı́culos. En la Sección
-[1.5.2](#sec:roadmap){reference-type="ref" reference="sec:roadmap"} se
+tráfico. En la sección [*Objetos de la simulación*](#objetos-de-la-simulación), se muestran las diferentes clases necesarias
+para modelar los cruces, carreteras y vehı́culos. En la sección
+[*Mapa de carreteras*](#mapa-de-carreteras) se
 describe la clase encargada de agrupar todos los objetos de la
 simulación, es decir, la clase que implementa un *mapa de carreteras*.
 El proceso de creación de eventos (vehı́culos, cruces, carreteras y
-cambio de alguna de sus propiedades) aparece en la Sección
-[1.5.3](#sec:events){reference-type="ref" reference="sec:events"}.
-Finalmente, la Sección [1.5.4](#sec:sim){reference-type="ref"
-reference="sec:sim"} contendrá la descripción de la clase que implementa
+cambio de alguna de sus propiedades) aparece en la sección 
+[Eventos](#eventos).
+Finalmente, la sección [*La clase TrafficSimulator*](#la-clase-trafficsimulator) contendrá la descripción de la clase que implementa
 el simulador de tráfico, que es la clase responsable de controlar la
 simulación.
 
-### Objetos de la simulación {#sec:simobj}
+### Objetos de la simulación
 
 Tendremos tres tipos de objetos simulados:
 
@@ -194,8 +190,8 @@ indirectamente) a la siguiente clase:
 #### Vehı́culos
 
 Habrá un único tipo de vehı́culo que implementaremos en la clase
-[Vehicle]{.sans-serif}. Esta clase que extenderá a la clase
-[SimulatedObject]{.sans-serif}, que se encuentra dentro del paquete
+`Vehicle`. Esta clase que extenderá a la clase
+`SimulatedObject`, que se encuentra dentro del paquete
 "[simulator.model]{.sans-serif}". La clase [Vehicle]{.sans-serif} debe
 contener atributos (campos) para almacenar al menos la siguiente
 información (recuerda que está prohibido declarar los atributos como
@@ -851,7 +847,7 @@ respetar los modificadores de visibilidad tal cual se describen):
     la lista de vehı́culos en el orden en que aparecen en la cola (el
     orden debe ser el mismo que el usado para recorrerla).
 
-### Mapa de carreteras {#sec:roadmap}
+### Mapa de carreteras
 
 El propósito de esta clase es agrupar todos los objetos de la
 simulación. Esto facilita el trabajo del simulador. Se implementa a
@@ -946,7 +942,7 @@ correspondientes objetos de la simulación. El orden en las listas `JSON`
 debe ser el mismo que el orden de las listas correspondientes de
 [RoadMap]{.sans-serif}.
 
-### Eventos {#sec:events}
+### Eventos
 
 Los eventos nos permiten inicializar e interactuar con el simulador,
 añadiendo vehı́culos, carreteras y cruces; cambiando las condiciones
@@ -1083,7 +1079,7 @@ identificador [c.getFirst()]{.sans-serif} a
 [c.getSecond()]{.sans-serif}. Debe lanzar una excepción si el vehı́culo
 no existe en el mapa de carreteras.
 
-### La clase "TrafficSimulator" {#sec:sim}
+### La clase "TrafficSimulator"
 
 La clase del simulador es la única responsable de ejecutar la
 simulación. Se implementa en la clase [TrafficSimulator]{.sans-serif}
