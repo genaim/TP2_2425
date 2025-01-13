@@ -139,7 +139,7 @@ simulación.
 Tendremos tres tipos de objetos simulados:
 
 -   **Vehı́culos**, que viajan a través de carreteras y contaminan
-    emitiendo $\mathtt{CO}_2$. Cada vehı́culo tendrá un itinerario, que
+    emitiendo CO<sub>2</sub>. Cada vehı́culo tendrá un itinerario, que
     serán todos los cruces por los que tiene que pasar.
 
 -   **Carreteras de dirección única**, a través de las cuales viajan los
@@ -225,16 +225,16 @@ información (recuerda que está prohibido declarar los atributos como
 -   *localización* (de tipo `int`): la localización del
     vehı́culo en la carretera sobre la que está circulando, es decir, la
     distancia desde el comienzo de la carretera. El comienzo de la
-    carretera es la localización $0$.
+    carretera es la localización 0.
 
 -   *grado de contaminación* (de tipo `int`): un número
-    entre $0$ y $10$ (ambos inclusive) que se usa para calcular el
-    $\mathtt{CO}_2$ emitido por el vehı́culo en cada paso de la
+    entre 0 y 10 (ambos inclusive) que se usa para calcular el
+    CO<sub>2</sub> emitido por el vehı́culo en cada paso de la
     simulación. Es el equivalente a los distintivos medioambientales que
     actualmente llevan los vehı́culos en el mundo real.
 
 -   *contaminación total* (de tipo `int`): el total de
-    $\mathtt{CO}_2$ emitido por el vehı́culo durante su trayectoria
+    CO<sub>2</sub> emitido por el vehı́culo durante su trayectoria
     recorrida.
 
 -   *distancia total recorrida* (de tipo `int`): la
@@ -252,8 +252,8 @@ protected*:
 En esta constructora debes comprobar que los argumentos tienen valores
 válidos y, en caso de que no los tengan, lanzar la excepción
 correspondiente. Para hacer dicha comprobación debes tener en cuenta lo
-siguiente: `maxSpeed` tiene que ser positivo; `contClass` debe ser un valor entre $0$ y $10$ (ambos
-incluidos); y la longitud de la lista `itinerary` es al menos $2$.
+siguiente: `maxSpeed` tiene que ser positivo; `contClass` debe ser un valor entre 0 y 10 (ambos
+incluidos); y la longitud de la lista `itinerary` es al menos 2.
 
 Además, no se debe compartir el argumento `itinerary`, sino
 que debes hacer una copia de dicho argumento en una lista de sólo
@@ -271,7 +271,7 @@ de visibilidad, significa que el método es *package protected*):
 
 -   `void setContaminationClass(int c)`: pone el valor de
     contaminación del vehı́culo a `c`. Lanza una excepción
-    si `c` no es un valor entre $0$ y $10$ (ambos
+    si `c` no es un valor entre 0 y 10 (ambos
     incluidos).
 
 -   `void advance(int time)`: si el estado del vehı́culo no
@@ -281,11 +281,11 @@ de visibilidad, significa que el método es *package protected*):
         localización actual* más *la velocidad actual*; y (ii) la
         longitud de la carretera por la que está circulando.
 
-    (b) calcula la contaminación $c$ producida utilizando la fórmula
-        $c=l*f$, donde $f$ es el grado de contaminación y $l$ es la
+    (b) calcula la contaminación c producida utilizando la fórmula
+        c=l*f, donde f es el grado de contaminación y l es la
         distancia recorrida en ese paso de la simulación, es decir, la
         nueva localización menos la localización previa. Después añade
-        $c$ a la *contaminación total del vehı́culo* y también añade $c$
+        c a la *contaminación total del vehı́culo* y también añade c
         al grado de contaminación de la carretera actual, invocando al
         método correspondiente de la clase `Road`.
 
@@ -298,7 +298,7 @@ de visibilidad, significa que el método es *package protected*):
 -   `void moveToNextRoad()`: mueve el vehı́culo a la
     siguiente carretera. Este proceso se hace *saliendo* de la carretera
     actual y *entrando* a la siguiente carretera de su itinerario, en la
-    localización $0$. Para salir y entrar de las carreteras, debes
+    localización 0. Para salir y entrar de las carreteras, debes
     utilizar el método correspondiente de la clase `Road`.
     Para encontrar la siguiente carretera, el vehı́culo debe preguntar al
     cruce en el cual está esperando (o al primero del itinerario en caso
@@ -333,7 +333,7 @@ de visibilidad, significa que el método es *package protected*):
 
     donde `id` es el identificador del vehı́culo; `speed` es la
     velocidad actual; `distance` es la distancia total recorrida por
-    el vehı́culo; `co2` es el total de $\mathtt{CO}_2$ emitido por el
+    el vehı́culo; `co2` es el total de CO<sub>2</sub> emitido por el
     vehı́culo; `class` es la etiqueta medioambiental del vehı́culo;
     `status` es el estado del vehı́culo que puede ser `PENDING`,
     `TRAVELING`, `WAITING` o `ARRIVED`; `road` es el
@@ -350,7 +350,7 @@ información correspondiente: `getLocation()`,
 `getRoad()`.
 
 También puedes definir *setters* siempre que sean privados. **Asegúrate
-de que la velocidad del vehı́culo es $0$ cuando su estado no es
+de que la velocidad del vehı́culo es 0 cuando su estado no es
 *Traveling***.
 
 #### Carreteras
@@ -390,7 +390,7 @@ menos los siguientes campos o atributos:
 
 -   *contaminación total* (de tipo `int`): la contaminación
     total acumulada en la carretera, es decir, el total de
-    $\mathtt{CO}_2$ emitido por los vehı́culos que circulan sobre la
+    CO<sub>2</sub> emitido por los vehı́culos que circulan sobre la
     carretera.
 
 -   *vehículos* (de tipo `List<Vehicle>`): una lista de
@@ -424,8 +424,8 @@ declaración debes respetar:
 -   `void enter(Vehicle v)`: se utiliza por los vehı́culos
     para entrar a la carretera. Simplemente añade el vehı́culo a la lista
     de vehı́culos de la carretera (al final). Debe comprobar que la
-    localización del vehı́culo es $0$ y que la velocidad del vehı́culo
-    también es $0$. En otro caso lanzará una excepción.
+    localización del vehı́culo es 0 y que la velocidad del vehı́culo
+    también es 0. En otro caso lanzará una excepción.
 
 -   `void exit(Vehicle v)`: lo utiliza un vehı́culo para
     abandonar la carretera. Simplemente elimina el vehı́culo de la lista
@@ -437,7 +437,7 @@ declaración debes respetar:
     una excepción en caso contrario.
 
 -   `void addContamination(int c)`: añade `c`
-    unidades de $\mathtt{CO}_2$ al total de la contaminación de la
+    unidades de CO<sub>2</sub> al total de la contaminación de la
     carretera. Tiene que comprobar que `c` no es negativo y
     lanzar una excepción en otro caso.
 
@@ -461,7 +461,7 @@ declaración debes respetar:
 
     (1) llama a `reduceTotalContamination` para reducir la
         contaminación total, es decir, la disminución de
-        $\mathtt{CO}_2$.
+        CO<sub>2</sub>.
 
     (2) llama a `updateSpeedLimit` para establecer el
         lı́mite de velocidad de la carretera en el paso de simulación
@@ -516,25 +516,25 @@ siguientes métodos:
 -   `reduceTotalContamination`: que reduce la contaminación
     total al valor:
 
-    $\textsf{((100-x)*tc)/100}$
+    \textsf{((100-x)*tc)/100}
 
-    donde $\textsf{tc}$ es la contaminación total actual y
-    `x` depende de las condiciones atmosféricas: $2$ en
-    caso de tiempo `SUNNY` (soleado), $3$ si el tiempo es
-    `CLOUDY` (nublado), $10$ en caso de que el tiempo sea
-    `RAINY` (lluvioso), $15$ si es `WINDY`
-    (ventisca), y $20$ si el tiempo está `STORM`
+    donde \textsf{tc} es la contaminación total actual y
+    `x` depende de las condiciones atmosféricas: 2 en
+    caso de tiempo `SUNNY` (soleado), 3 si el tiempo es
+    `CLOUDY` (nublado), 10 en caso de que el tiempo sea
+    `RAINY` (lluvioso), 15 si es `WINDY`
+    (ventisca), y 20 si el tiempo está `STORM`
     (tormentoso).
 
 -   `updateSpeedLimit`: si la contaminación total excede el
     lı́mite de contaminación, entonces pone el lı́mite de la velocidad al
-    $50\%$ de la velocidad máxima (es decir a
+    50\% de la velocidad máxima (es decir a
     `maxSpeed/2`). En otro caso pone el lı́mite de la
     velocidad a la velocidad máxima.
 
 -   `calculateVehicleSpeed`: calcula la velocidad del
     vehı́culo como la velocidad lı́mite de la carretera. Si el tiempo es
-    `STORM` lo reduce en un $20\%$ (es decir,
+    `STORM` lo reduce en un 20\% (es decir,
     `(speedLimit\*8)/10`).
 
 Esta clase de carreteras están dentro de las ciudades y se implementan a
@@ -549,9 +549,9 @@ antes. El comportamiento de esta clase viene dado por los siguientes
 métodos:
 
 -   método `reduceTotalContamination`: que reduce el total
-    de la contaminación en `x` unidades de $\mathtt{CO}_2$,
-    donde `x` depende de las condiciones atmosféricas: $10$
-    en caso de `WINDY`o `STORM`, y $2$ en otro
+    de la contaminación en `x` unidades de CO<sub>2</sub>,
+    donde `x` depende de las condiciones atmosféricas: 10
+    en caso de `WINDY`o `STORM`, y 2 en otro
     caso. Asegúrate de que el total de contaminación no se vuelve
     negativo.
 
@@ -607,8 +607,8 @@ El método `chooseNextGreen` recibe como parámetros:
 -   `roads`: la lista de carreteras entrantes al cruce.
 
 -   `qs`: una lista de vehı́culos donde las listas internas
-    de vehı́culos representan *colas*. La cola $i$-ésima corresponde a la
-    cola de vehı́culos de la $i$-ésima carretera de la lista
+    de vehı́culos representan *colas*. La cola i-ésima corresponde a la
+    cola de vehı́culos de la i-ésima carretera de la lista
     `roads`. Observa que usamos el tipo
     `List<Vehicle>` en lugar de
     `Queue<Vehicle>` para representar una cola, ya que la
@@ -618,12 +618,12 @@ El método `chooseNextGreen` recibe como parámetros:
 
 -   `currGreen`: el ı́ndice (en la lista
     `roads`) de la carretera que tiene el semáforo en
-    verde. El valor $-1$ se utiliza para indicar que todos los semáforos
+    verde. El valor -1 se utiliza para indicar que todos los semáforos
     están en rojo.
 
 -   `lastSwitchingTime`: el paso de la simulación en el
     cual el semáforo para la carretera `currGreen` se
-    cambió de *rojo* a *verde*. Si `currGreen` es $-1$
+    cambió de *rojo* a *verde*. Si `currGreen` es -1
     entonces es el último paso en el cual todos cambiaron a rojo.
 
 -   `currTime`: el paso de simulación actual.
@@ -631,7 +631,7 @@ El método `chooseNextGreen` recibe como parámetros:
 El método devuelve el ı́ndice de la carretera (en la lista
 `roads`) que tiene que poner su semáforo a verde -- si es
 el misma que `currGreen`, entonces, el cruce no considerará
-el cambio. Si devuelve $-1$ significa que todos deberı́an estar en rojo.
+el cambio. Si devuelve -1 significa que todos deberı́an estar en rojo.
 
 Tenemos dos estrategias para cambiar los semáforos de color, que son
 `RoundRobinStrategy` y `MostCrowdedStrategy`
@@ -644,12 +644,12 @@ continuación definimos el comportamiento de ambas estrategias.
 La estrategia `RoundRobinStrategy` se comporta como sigue:
 
 1.  si la lista de carreteras entrantes es vacı́a, entonces devuelve
-    $-1$.
+    -1.
 
 2.  si los semáforos de todas las carreteras entrantes están rojos (es
-    decir, `currGreen` es $-1$), entonces pone en verde el
+    decir, `currGreen` es -1), entonces pone en verde el
     primer semáforo de la lista `roads` (es decir, devuelve
-    $0$).
+    0).
 
 3.  si `currTime-lastSwitchingTime < timeSlot`, deja los
     semáforos tal cual están (es decir, devuelve
@@ -662,12 +662,12 @@ La estrategia `RoundRobinStrategy` se comporta como sigue:
 La estrategia `MostCrowdedStrategy` se comporta como sigue:
 
 1.  si la lista de carreteras entrantes es vacı́a, entonces devuelve
-    $-1$.
+    -1.
 
 2.  si todos los semáforos de las carreteras entrantes están en rojo,
     pone verde el semáforo de la carretera entrante con la cola más
     larga, empezando la búsqueda (en `qs`) desde la
-    posición $0$. Si hay más de una carretera entrante con la misma
+    posición 0. Si hay más de una carretera entrante con la misma
     longitud máxima de cola, entonces coge la primera que encuentra
     durante la búsqueda.
 
@@ -728,8 +728,8 @@ contiene al menos los siguientes atributos (que no pueden ser públicos):
 
 -   *lista de colas* (de tipo
     `List<List<Vehicle>>`): una lista de colas para
-    las carreteras entrantes -- la cola $i$-ésima (representada como
-    `List<Vehicle>`) corresponde a la $i$-ésima carretera
+    las carreteras entrantes -- la cola i-ésima (representada como
+    `List<Vehicle>`) corresponde a la i-ésima carretera
     en la *lista de carreteras entrantes*. Se recomienda guardar un mapa
     de "carretera-cola" (de tipo
     `Map<Road,List<Vehicles>`) para hacer la búsqueda,
@@ -737,13 +737,13 @@ contiene al menos los siguientes atributos (que no pueden ser públicos):
 
 -   *ı́ndice del semáforo en verde* (de tipo `int`): el
     ı́ndice de la carretera entrante (en la lista de carreteras
-    entrantes) que tiene el semáforo en verde. El valor $-1$ se usa para
+    entrantes) que tiene el semáforo en verde. El valor -1 se usa para
     indicar que todas las carreteras entrantes tienen su semáforo en
     rojo.
 
 -   *último paso de cambio de semáforo* (de tipo `int`): el
     paso en el cual el *ı́ndice del semáforo* en verde ha cambiado de
-    valor. Su valor inicial es $0$.
+    valor. Su valor inicial es 0.
 
 -   *estragegia de cambio de semáforo* (de tipo
     `LightSwitchingStrategy`): una estrategia para cambiar
@@ -940,8 +940,8 @@ Los eventos nos permiten inicializar e interactuar con el simulador,
 añadiendo vehı́culos, carreteras y cruces; cambiando las condiciones
 atmosféricas de las carreteras; y cambiando el nivel de contaminación de
 los vehı́culos. Cada evento tiene un tiempo en el cual debe ser
-ejecutado. En cada tick $t$, el simulador ejecuta todos los eventos
-correspondientes al paso $t$, en el orden en el cual fueron añadidos a
+ejecutado. En cada tick t, el simulador ejecuta todos los eventos
+correspondientes al paso t, en el orden en el cual fueron añadidos a
 la cola de eventos. Primero vamos a definir una clase abstracta
 `Event` (dentro del paquete
 `simulator.model`) para modelar un evento:
@@ -1090,7 +1090,7 @@ menos los siguientes atributos que no pueden ser públicos:
     adjuntará su código en el paquete `simulator.misc`.
 
 -   *tiempo (paso) de la simulación* (de tipo `int`): el
-    paso de la simulación, que inicialmente será $0$.
+    paso de la simulación, que inicialmente será 0.
 
 La clase `TrafficSimulator` tiene sólo una constructora
 pública por defecto, que inicializa los campos a sus valores por
@@ -1105,7 +1105,7 @@ modificadores de visibilidad como se describen a continuación):
     simulación de la siguiente forma (**el orden de los puntos que
     aparecen a continuación es muy importante!**):
 
-    1.  incrementa el tiempo de la simulación en $1$.
+    1.  incrementa el tiempo de la simulación en 1.
 
     2.  ejecuta todos los eventos cuyo tiempo sea el tiempo actual de la
         simulación y los elimina de la lista.
@@ -1115,7 +1115,7 @@ modificadores de visibilidad como se describen a continuación):
     4.  llama al método `advance` de todas las carreteras.
 
 -   `public void reset()`: limpia el *mapa de carreteras* y
-    la *lista de eventos*, y pone el *tiempo de la simulación* a $0$.
+    la *lista de eventos*, y pone el *tiempo de la simulación* a 0.
 
 -   `public JSONObject report()`: devuelve el estado del
     simulador en el siguiente formato `JSON`:
@@ -1294,7 +1294,7 @@ La clase `RoundRobinStrategyBuilder` crea una instancia de
                 }
     },
 
-La clave `timeslot` es opcional, y su valor por defecto es $1$.
+La clave `timeslot` es opcional, y su valor por defecto es 1.
 
 La clase `MostCrowdedStrategyBuilder` crea una instancia de
 `MostCrowdedStrategy` a partir de la siguiente estructura
@@ -1307,10 +1307,10 @@ La clase `MostCrowdedStrategyBuilder` crea una instancia de
                 }
     }
 
-La clave `timeslot` es opcional y su valor por defecto es $1$.
+La clave `timeslot` es opcional y su valor por defecto es 1.
 
 En las dos estructuras anteriores, la clave `timeslot` es opcional,
-con un valor por defecto de $1$. Una vez que se definan las clases
+con un valor por defecto de 1. Una vez que se definan las clases
 anteriores, se pueden usar para crear la factorı́a correspondiente de la
 siguiente forma:
 
@@ -1529,7 +1529,7 @@ Además esta clase tendrá los siguientes métodos:
 
         JSONObject jo = new JSONObject(new JSONTokener(in));
 
-    y después extrae cada $e_i$ de `jo`, crea el evento
+    y después extrae cada e_i de `jo`, crea el evento
     correspondiente `e` utilizando la *factorı́a de
     eventos*, y lo añade al simulador invocando al método
     `addEvent`. Este método debe lanzar una excepción si la
@@ -1544,7 +1544,7 @@ Además esta clase tendrá los siguientes métodos:
         { "states": [s-1,…,s-n] }
 
     donde `s-i` es el estado del simulador **después de** ejecutar el
-    paso `i`. Observa que el estado $s_i$ se obtiene llamando al método
+    paso `i`. Observa que el estado s_i se obtiene llamando al método
     `report()` del simulador de tráfico.
 
 -   `public void reset()`: invoca al método
@@ -1574,11 +1574,11 @@ comandos:
 El primer ejemplo escribe la salida en un fichero `output.json`,
 mientras que el segundo escribe la salida en la consola. En ambos casos,
 el fichero de entrada, conteniendo los eventos, es `eventsfile.json` y
-el número de ticks es $100$. Simplemente tienes que completar los
+el número de ticks es 100. Simplemente tienes que completar los
 métodos `initFactories` y `startBatchMode`, y
 añadir código para procesar la opción `-t` (estudiando como
 se ha hecho para otras opciones). Observa que es un argumento opcional,
-que en caso de no ser proporcionado, tendrá como valor $10$.
+que en caso de no ser proporcionado, tendrá como valor 10.
 
 ## Otros comentarios
 
