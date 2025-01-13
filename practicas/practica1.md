@@ -30,7 +30,7 @@ seguirlas obligatoriamente.
     desarrollar la práctica usando esta plantilla.
 
 2.  Pon los nombres de los componentes del grupo en el fichero
-    "`NAMES.txt`". Cada miembro en una lı́nea separada.
+    `NAMES.txt`". Cada miembro en una lı́nea separada.
 
 3.  Debes seguir estrictamente la estructura de paquetes y clases
     sugerida por el profesor y/o descrita en el enunciado.
@@ -42,7 +42,7 @@ seguirlas obligatoriamente.
 
 ## Análisis y creación de datos `JSON` en Java
 
-JavaScript Object Notation[^1] (`JSON`) es un formato estándar de
+[JavaScript Object Notation](https://en.wikipedia.org/wiki/JSON) (`JSON`) es un formato estándar de
 fichero que utiliza texto y que permite almacenar propiedades de los
 objetos utilizando pares clave-valor y arrays de tipos de datos.
 Utilizaremos `JSON` para la entrada y salida del simulador. Una
@@ -71,20 +71,20 @@ analizar `JSON` y convertirlo en objetos Java fáciles de manipular (ya
 se encuentra importada en el proyecto). También puedes usar esta
 librerı́a para crear estructuras `JSON` y convertirlas en *strings*. Un
 ejemplo de uso de esta librerı́a está disponible en el paquete
-"`extra.json`".
+`extra.json`".
 
 Para comparar la salida de tu implementación (sobre los ejemplos que se
 proporcionan) con la salida esperada, puedes usar el siguiente
 comparador de ficheros en formato `JSON`, disponible en:
 <http://www.jsondiff.com>. Además, el ejemplo que aparece en el paquete
-"`extra.json`" incluye otra forma de comparar dos
+`extra.json`" incluye otra forma de comparar dos
 estructuras `JSON`, usando directamente la librerı́a. Observa que dos
 estructuras `JSON` se consideran sem'anticamente iguales si tienen el
 mismo conjunto de pares clave-valor. No es necesario que las estructuras
 sean sintácticamente idénticas. También suministramos un programa que
 ejecuta tu práctica sobre un conjunto de ejemplos, y compara su salida
 con la salida esperada --ver la
-Sección [1.8](#sec:app){reference-type="ref" reference="sec:app"}.
+sección [Otros Comentarios](#otros-comentarios).
 
 ## Introducción al simulador de tráfico
 
@@ -192,12 +192,12 @@ indirectamente) a la siguiente clase:
 Habrá un único tipo de vehı́culo que implementaremos en la clase
 `Vehicle`. Esta clase que extenderá a la clase
 `SimulatedObject`, que se encuentra dentro del paquete
-"`simulator.model`". La clase `Vehicle` debe
+`simulator.model`". La clase `Vehicle` debe
 contener atributos (campos) para almacenar al menos la siguiente
 información (recuerda que está prohibido declarar los atributos como
 `public`):
 
--   *itinerario* (de tipo `List\<Junction\>`): una lista de
+-   *itinerario* (de tipo `List<Junction>`): una lista de
     cruces que representa el itinerario del vehı́culo. La clase
     `Junction` representa los cruces y se describe en la
     Sección [\[sec:Junction\]](#sec:Junction){reference-type="ref"
@@ -210,7 +210,7 @@ información (recuerda que está prohibido declarar los atributos como
     a la que está circulando el vehı́culo.
 
 -   *estado* (de tipo enumerado `VehicleStatus` -- ver
-    paquete "`simulator.model`"): el estado del vehı́culo,
+    paquete `simulator.model`"): el estado del vehı́culo,
     que puede ser *Pending* (todavı́a no ha entrado a la primera
     carretera de su itinerario), *Traveling* (circulando sobre una
     carretera), *Waiting* (esperando en un cruce), o *Arrived* (ha
@@ -252,16 +252,8 @@ protected*:
 En esta constructora debes comprobar que los argumentos tienen valores
 válidos y, en caso de que no los tengan, lanzar la excepción
 correspondiente. Para hacer dicha comprobación debes tener en cuenta lo
-siguiente:
-
-::: inparaenum
-`maxSpeed` tiene que ser positivo;
-
-`contClass` debe ser un valor entre $0$ y $10$ (ambos
-incluidos); y
-
-la longitud de la lista `itinerary` es al menos $2$.
-:::
+siguiente: `maxSpeed` tiene que ser positivo; `contClass` debe ser un valor entre $0$ y $10$ (ambos
+incluidos); y la longitud de la lista `itinerary` es al menos $2$.
 
 Además, no se debe compartir el argumento `itinerary`, sino
 que debes hacer una copia de dicho argumento en una lista de sólo
@@ -339,16 +331,16 @@ de visibilidad, significa que el método es *package protected*):
            "location" : 30
          }
 
-    donde "`id`" es el identificador del vehı́culo; "`speed`" es la
-    velocidad actual; "`distance`" es la distancia total recorrida por
-    el vehı́culo; "`co2`" es el total de $\mathtt{CO}_2$ emitido por el
-    vehı́culo; "`class`" es la etiqueta medioambiental del vehı́culo;
-    "`status`" es el estado del vehı́culo que puede ser "`PENDING`",
-    "`TRAVELING`", "`WAITING`" o "`ARRIVED`"; "`road`" es el
+    donde `id`" es el identificador del vehı́culo; `speed`" es la
+    velocidad actual; `distance`" es la distancia total recorrida por
+    el vehı́culo; `co2`" es el total de $\mathtt{CO}_2$ emitido por el
+    vehı́culo; `class`" es la etiqueta medioambiental del vehı́culo;
+    `status`" es el estado del vehı́culo que puede ser `PENDING`",
+    `TRAVELING`", `WAITING`" o `ARRIVED`"; `road`" es el
     identificador de la carretera sobre la que el vehı́culo está
-    circulando; y "`location`" es su localización sobre la carretera. Si
-    el estado del vehı́culo es *Pending* o *Arrived*, las claves "`road`"
-    y "`location`" se deben omitir en el informe.
+    circulando; y `location`" es su localización sobre la carretera. Si
+    el estado del vehı́culo es *Pending* o *Arrived*, las claves `road`"
+    y `location`" se deben omitir en el informe.
 
 Además, define los siguientes *getters públicos* para consultar la
 información correspondiente: `getLocation()`,
@@ -361,12 +353,12 @@ También puedes definir *setters* siempre que sean privados. **Asegúrate
 de que la velocidad del vehı́culo es $0$ cuando su estado no es
 *Traveling***.
 
-#### Carreteras {#sec:claseRoad}
+#### Carreteras
 
 En esta práctica tendremos dos tipos de carreteras. La diferencia entre
 ambos tipos radica en cómo gestionan los nı́veles de contaminación.
 Primero describimos la clase base `Road` (en el paquete
-"`simulator.model`"), que extiende a
+`simulator.model`"), que extiende a
 `SimulatedObject`. Después usaremos herencia para definir
 los dos tipos de carreteras. La clase `Road` contendrá al
 menos los siguientes campos o atributos:
@@ -392,7 +384,7 @@ menos los siguientes campos o atributos:
     restricciones al tráfico para reducir la contaminación.
 
 -   *condiciones ambientales* (de tipo enumerado `Weather`
-    -- ver el paquete "`simulator.model`"): las condiciones
+    -- ver el paquete `simulator.model`"): las condiciones
     atmosféricas en la carretera. Este valor se usa para actualizar la
     velocidad de los vehı́culos, estado de contaminación, etc.
 
@@ -401,7 +393,7 @@ menos los siguientes campos o atributos:
     $\mathtt{CO}_2$ emitido por los vehı́culos que circulan sobre la
     carretera.
 
--   *vehículos* (de tipo `List\<Vehicle\>`): una lista de
+-   *vehículos* (de tipo `List<Vehicle>`): una lista de
     vehı́culos que están circulando por la carretera -- **debe estar
     siempre ordenada por la localización de los vehı́culos (orden
     descendente)**. Observa que puede haber varios vehı́culos en la misma
@@ -497,10 +489,10 @@ declaración debes respetar:
           "vehicles" : ["v1","v2",...],
          }
 
-    donde "`id`" es el identificador de la carretera; "`speedlimit`" es
-    la velocidad lı́mite actual; "`weather`" son las condiciones
-    atmosféricas actuales; "`co2`" es la contaminación total; y
-    "`vehicles`" es una lista de identificadores de vehı́culos que están
+    donde `id`" es el identificador de la carretera; `speedlimit`" es
+    la velocidad lı́mite actual; `weather`" son las condiciones
+    atmosféricas actuales; `co2`" es la contaminación total; y
+    `vehicles`" es una lista de identificadores de vehı́culos que están
     circulando en la carretera (en el mismo orden en el que se han
     almacenado en la lista correspondiente).
 
@@ -518,7 +510,7 @@ implementar, y que heredan de Road.
 Esta clase de carreteras se utiliza para conectar ciudades y se
 implementa a través de la clase `InterCityRoad`, que
 extiende a `Road`. La clase debe colocarse dentro del
-paquete "`simulator.model`" y ha de contener, al menos, los
+paquete `simulator.model`" y ha de contener, al menos, los
 siguientes métodos:
 
 -   `reduceTotalContamination`: que reduce la contaminación
@@ -537,18 +529,18 @@ siguientes métodos:
 -   `updateSpeedLimit`: si la contaminación total excede el
     lı́mite de contaminación, entonces pone el lı́mite de la velocidad al
     $50\%$ de la velocidad máxima (es decir a
-    "`maxSpeed/2`"). En otro caso pone el lı́mite de la
+    `maxSpeed/2`"). En otro caso pone el lı́mite de la
     velocidad a la velocidad máxima.
 
 -   `calculateVehicleSpeed`: calcula la velocidad del
     vehı́culo como la velocidad lı́mite de la carretera. Si el tiempo es
     `STORM` lo reduce en un $20\%$ (es decir,
-    "`(speedLimit\*8)/10`").
+    `(speedLimit\*8)/10`").
 
 Esta clase de carreteras están dentro de las ciudades y se implementan a
 través de la clase `CityRoad`, que extiende a
 `Road` y debe estar dentro del paquete
-"`simulator.model`". Estas carreteras son más restrictivas
+`simulator.model`". Estas carreteras son más restrictivas
 cuando hay una contaminación excesiva. Nunca reducen la velocidad lı́mite
 (que siempre es su máxima velocidad), pero calculan la velocidad de los
 vehı́culos dependiendo del grado de contaminación. Es más, la reducción
@@ -567,7 +559,7 @@ métodos:
 
 -   método `calculateVehicleSpeed`: que calcula la
     velocidad de un vehı́culo usando la expresión
-    "`((11-f)\*s)/11`", donde `s` es la
+    `((11-f)\*s)/11`", donde `s` es la
     velocidad lı́mite de la carretera y `f` es el grado de
     contaminación del vehı́culo.
 
@@ -602,7 +594,7 @@ para eliminar los vehı́culos de las colas. Después presentaremos la clase
 Estas estrategias nos servirán para decidir cuál de las carreteras
 entrantes al cruce pondrá su semáforo en verde. Para implementar las
 estrategias utilizaremos la siguiente interfaz, que debe colocarse en el
-paquete "`simulator.model`":
+paquete `simulator.model`":
 
     package simulator.model;
 
@@ -618,8 +610,8 @@ El método `chooseNextGreen` recibe como parámetros:
     de vehı́culos representan *colas*. La cola $i$-ésima corresponde a la
     cola de vehı́culos de la $i$-ésima carretera de la lista
     `roads`. Observa que usamos el tipo
-    `List\<Vehicle\>` en lugar de
-    `Queue\<Vehicle\>` para representar una cola, ya que la
+    `List<Vehicle>` en lugar de
+    `Queue<Vehicle>` para representar una cola, ya que la
     interfaz `Queue` en Java no garantiza ningún orden
     cuando se recorre la colección (y lo que queremos es recorrerla en
     el orden en el cual los elementos se añadieron).
@@ -643,7 +635,7 @@ el cambio. Si devuelve $-1$ significa que todos deberı́an estar en rojo.
 
 Tenemos dos estrategias para cambiar los semáforos de color, que son
 `RoundRobinStrategy` y `MostCrowdedStrategy`
-(colocadas en el paquete "`simulator.model`"). Ambas
+(colocadas en el paquete `simulator.model`"). Ambas
 reciben en la constructora un parámetro `timeSlot` (de tipo
 `int`), que representa el número de "ticks" consecutivos
 durante los cuales la carretera puede tener el semáforo en verde. A
@@ -659,7 +651,7 @@ La estrategia `RoundRobinStrategy` se comporta como sigue:
     primer semáforo de la lista `roads` (es decir, devuelve
     $0$).
 
-3.  si "`currTime-lastSwitchingTime \< timeSlot`", deja los
+3.  si `currTime-lastSwitchingTime < timeSlot`", deja los
     semáforos tal cual están (es decir, devuelve
     `currGreen`).
 
@@ -679,7 +671,7 @@ La estrategia `MostCrowdedStrategy` se comporta como sigue:
     longitud máxima de cola, entonces coge la primera que encuentra
     durante la búsqueda.
 
-3.  si "`currTime-lastSwitchingTime \< timeSlot`", entonces
+3.  si `currTime-lastSwitchingTime < timeSlot`", entonces
     deja los semáforos tal cual están (es decir devuelve
     `currGreen`).
 
@@ -693,7 +685,7 @@ La estrategia `MostCrowdedStrategy` se comporta como sigue:
 
 Estas estrategias eliminan vehı́culos de las carreteras entrantes cuyo
 semáforo esté a verde. Se modelan a través de la interfaz (que debes
-colocar en el paquete "`simulator.model`"):
+colocar en el paquete `simulator.model`"):
 
     package simulator.model;
 
@@ -707,7 +699,7 @@ muevan a sus siguientes carreteras. El método no debe modificar la cola
 `q`, ni pedir a los vehı́culos que se muevan, ya que esta
 tarea pertenece a la clase `Junction`. Implementaremos dos
 estrategias para sacar elementos de la cola (que situaremos en el
-paquete "`simulator.model`"):
+paquete `simulator.model`"):
 
 -   `MoveFirstStrategy` devuelve una lista que incluye el
     primer vehı́culo de `q`.
@@ -717,30 +709,30 @@ paquete "`simulator.model`"):
     `q`). El orden debe ser el mismo que cuando se itera
     `q`.
 
-[]{#sec:Junction label="sec:Junction"} La funcionalidad de un cruce se
+La funcionalidad de un cruce se
 implementa a través de la clase `Junction`, que extiende a
 `SimulatedObject`, y que debe estar colocada en el paquete
-"`simulator.model`". La clase `Junction`
+`simulator.model`". La clase `Junction`
 contiene al menos los siguientes atributos (que no pueden ser públicos):
 
 -   *lista de carreteras entrantes* (de tipo
-    `List\<Road\>`): una lista de todas las carreteras que
+    `List<Road>`): una lista de todas las carreteras que
     entran al cruce, es decir, el cruce es su destino.
 
 -   *mapa de carreteras salientes* (de tipo
-    `Map\<Junction,Road\>`): un mapa de carreteras
+    `Map<Junction,Road>`): un mapa de carreteras
     salientes, es decir, si `(j,r)` es un par clave-valor
     del mapa, entonces el cruce está conectado al cruce `j`
     a través de la carretera `r`. El mapa se usa para saber
     qué carretera seleccionar para llegar al cruce `j`.
 
 -   *lista de colas* (de tipo
-    `List\<List\<Vehicle$\sf >>$`): una lista de colas para
+    `List<List<Vehicle$\sf >>$`): una lista de colas para
     las carreteras entrantes -- la cola $i$-ésima (representada como
-    `List\<Vehicle\>`) corresponde a la $i$-ésima carretera
+    `List<Vehicle>`) corresponde a la $i$-ésima carretera
     en la *lista de carreteras entrantes*. Se recomienda guardar un mapa
     de "carretera-cola" (de tipo
-    `Map\<Road,List\<Vehicles\>`) para hacer la búsqueda,
+    `Map<Road,List<Vehicles>`) para hacer la búsqueda,
     en la cola de una carretera dada, de forma eficiente.
 
 -   *ı́ndice del semáforo en verde* (de tipo `int`): el
@@ -832,9 +824,9 @@ respetar los modificadores de visibilidad tal cual se describen):
           "queues" : [Q1,Q2,....]
          }
 
-    donde "`id`" es el identificador del cruce; "`green`" es el
-    identificador de la carretera con el semáforo en verde ("`none`" si
-    todos están en rojo); y "`queues`" es la lista de colas de las
+    donde `id`" es el identificador del cruce; `green`" es el
+    identificador de la carretera con el semáforo en verde (`none`" si
+    todos están en rojo); y `queues`" es la lista de colas de las
     carreteras entrantes, donde cada `Qi` tiene el siguiente formato
     `JSON`:
 
@@ -843,7 +835,7 @@ respetar los modificadores de visibilidad tal cual se describen):
           "vehicles" : ["v1","v2",....]
          }
 
-    donde "`road`" es el identificador de la carretera y "`vehicles`" es
+    donde `road`" es el identificador de la carretera y `vehicles`" es
     la lista de vehı́culos en el orden en que aparecen en la cola (el
     orden debe ser el mismo que el usado para recorrerla).
 
@@ -852,24 +844,24 @@ respetar los modificadores de visibilidad tal cual se describen):
 El propósito de esta clase es agrupar todos los objetos de la
 simulación. Esto facilita el trabajo del simulador. Se implementa a
 través de la clase `RoadMap` que debe estar colocada dentro
-del paquete "`simulator.model`". La clase
+del paquete `simulator.model`". La clase
 `RoadMap` tiene al menos los siguientes atributos, que no
 pueden ser públicos:
 
--   *lista de cruces* de tipo `List\<Junction\>`.
+-   *lista de cruces* de tipo `List<Junction>`.
 
--   *lista de carreteras* de tipo `List\<Road\>`.
+-   *lista de carreteras* de tipo `List<Road>`.
 
--   *lista de vehı́culos* de tipo `List\<Vehicle\>`.
+-   *lista de vehı́culos* de tipo `List<Vehicle>`.
 
--   *mapa de cruces* de tipo `Map\<String,Junction\>`: un
+-   *mapa de cruces* de tipo `Map<String,Junction>`: un
     mapa de identificadores de cruces a los correspondientes cruces.
 
--   *mapa de carreteras* de tipo `Map\<String,Road\>`: un
+-   *mapa de carreteras* de tipo `Map<String,Road>`: un
     mapa de identificadores de carreteras a las correspondientes
     carreteras.
 
--   *mapa de vehı́culos* de tipo `Map\<String,Vehicle\>`: un
+-   *mapa de vehı́culos* de tipo `Map<String,Vehicle>`: un
     mapa de identificadores de vehı́culos a los correspondientes
     vehı́culos.
 
@@ -917,13 +909,13 @@ tener los modificadores de visibilidad descritos abajo):
     vehı́culo con identificador `id`, y `null`
     si no existe dicho vehı́culo.
 
--   `public List\<Junction\> getJunctions()`: devuelve una
+-   `public List<Junction> getJunctions()`: devuelve una
     versión de *solo lectura* de la lista de cruces.
 
--   `public List\<Roads\> getRoads()`: devuelve una versión
+-   `public List<Roads> getRoads()`: devuelve una versión
     de *solo lectura* de la lista de carreteras.
 
--   `public List\<Vehicle\> getVehicles()`: devuelve una
+-   `public List<Vehicle> getVehicles()`: devuelve una
     versión de *solo lectura* de la lista de vehı́culos.
 
 -   `void reset()`: limpia todas las listas y mapas.
@@ -952,7 +944,7 @@ ejecutado. En cada tick $t$, el simulador ejecuta todos los eventos
 correspondientes al paso $t$, en el orden en el cual fueron añadidos a
 la cola de eventos. Primero vamos a definir una clase abstracta
 `Event` (dentro del paquete
-"`simulator.model`") para modelar un evento:
+`simulator.model`") para modelar un evento:
 
     package simulator.model;
 
@@ -979,7 +971,7 @@ la cola de eventos. Primero vamos a definir una clase abstracta
       abstract void execute(RoadMap map);
     }
 
-El campo "`\_time`" es el tiempo (o paso) en el cual este
+El campo `\_time`" es el tiempo (o paso) en el cual este
 evento tiene que ser ejecutado, y el método `execute` es el
 método al que el simulador llama para ejecutar el evento. La
 funcionalidad de este método se define en las subclases.
@@ -987,7 +979,7 @@ funcionalidad de este método se define en las subclases.
 En lo que sigue vamos a describir los tipos de eventos que existen en el
 simulador, todos ellos extenderán a la clase `Event` y
 deben estar colocados dentro del paquete
-"`simulator.model`". La constructora de cada evento recibe
+`simulator.model`". La constructora de cada evento recibe
 algunos datos para ejecutar una operación cuando sea requerido, que se
 almacena en los campos y se usa en el método `execute` para
 ejecutar la funcionalidad correspondiente.
@@ -1057,7 +1049,7 @@ lanzar una excepción en caso contrario. El método `execute`
 recorre la lista `ws`, y para cada elemento
 `w` pone las condiciones atmosféricas de la carretera con
 identificador `w.getFirst()` a `w.getSecond()`
-(ver el paquete "`simulator.misc`" para el código de la
+(ver el paquete `simulator.misc` para el código de la
 clase `Pair`). Debe lanzar una excepción si la carretera no
 existe en el mapa de carreteras.
 
@@ -1083,19 +1075,19 @@ no existe en el mapa de carreteras.
 
 La clase del simulador es la única responsable de ejecutar la
 simulación. Se implementa en la clase `TrafficSimulator`
-dentro del paquete "`simulator.model`". Esta clase tiene al
+dentro del paquete `simulator.model`". Esta clase tiene al
 menos los siguientes atributos que no pueden ser públicos:
 
 -   *mapa de carreteras* (de tipo `RoadMap`): un mapa de
     carreteras en el cual se almacenan todos los objetos de la
     simulación.
 
--   *lista de eventos* (de tipo `List\<Event\>`): una lista
+-   *lista de eventos* (de tipo `List<Event>`): una lista
     de eventos a ejecutar. La lista está ordenada por el tiempo de los
     eventos. Si dos eventos tienen el mismo tiempo, el que fue añadido
     antes irá el primero en la lista -- para garantizar este uso, la
     clase `SortedArrayList` se explicará en clase, y se
-    adjuntará su código en el paquete "`simulator.misc`".
+    adjuntará su código en el paquete `simulator.misc`".
 
 -   *tiempo (paso) de la simulación* (de tipo `int`): el
     paso de la simulación, que inicialmente será $0$.
@@ -1137,11 +1129,11 @@ modificadores de visibilidad como se describen a continuación):
                        }
            }
 
-    donde "`time`" es el *tiempo de la simulación* actual, y "`state`"
+    donde `time`" es el *tiempo de la simulación* actual, y `state`"
     es lo que devuelve el método `report()` del *mapa de
     carreteras*.
 
-## Controlador {#sec:controller}
+## Controlador
 
 Ahora que hemos definido las diferentes clases que forman parte de la
 lógica del simulador, podemos empezar a testearlo escribiendo un método
@@ -1165,14 +1157,14 @@ reference="sec:controllerc"} describiremos el controlador, que es la
 clase que permite cargar eventos desde un `InputStream` y
 ejecutar el simulador un número concreto de pasos.
 
-### Factorı́as {#sec:factories}
+### Factorı́as
 
 Como tenemos varias factorı́as, vamos a utilizar genéricos de Java para
 evitar la duplicación de código. Pasamos ahora a mostrar cómo
 implementar las factorı́as paso a paso. Todas las clases e interfaces
-deben colocarse dentro del paquete "`simulator.factories`".
+deben colocarse dentro del paquete `simulator.factories`".
 Modelamos una factorı́a a través de una interfaz genérica
-`Factory\<T\>`:
+`Factory<T>`:
 
     package simulator.factories;
 
@@ -1203,7 +1195,7 @@ extender una factorı́a con más opciones sin necesidad de modificar su
 código. El elemento básico en una *builder based factory* es el
 *builder*, que es una clase capaz de crear una instancia de un tipo
 especı́fico. Podemos modelarla como una clase genérica
-`Builder\<T\>`:
+`Builder<T>`:
 
     package simulator.factories;
 
@@ -1233,12 +1225,12 @@ especı́fico. Podemos modelarla como una clase genérica
     }
 
 Como se puede observar, su método `createInstance` recibe
-un objeto `JSON`, y si tiene clave "`type`" cuyo valor es igual al campo
+un objeto `JSON`, y si tiene clave `type`" cuyo valor es igual al campo
 `\_type`, llama al método abstracto
-`createTheInstance` con el valor de la clave "`data`" para
+`createTheInstance` con el valor de la clave `data`" para
 crear el objeto actual. En otro caso devuelve `null` para
 indicar que es incapaz de reconocer la estructura `JSON`. Las clases que
-extienden a `Builder\<T\>` son las responsables de asignar
+extienden a `Builder<T>` son las responsables de asignar
 un valor a `\_type` llamando a la constructora de la clase
 `Builder`, y también de definir el método
 `createTheInstance` para crear la instancia. Más tarde
@@ -1287,7 +1279,7 @@ correspondiente excepción) si algún dato no aparece en la estructura
 Para esta factorı́a necesitamos dos "builders",
 `RoundRobinStrategyBuilder` y
 `MostCrowdedStrategyBuilder`, ambos extendiendo a
-`Builder\<LightSwitchingStrategy\>`, ya que crean
+`Builder<LightSwitchingStrategy>`, ya que crean
 instancias de las clases que implementan a
 `LightSwitchingStrategy`.
 
@@ -1302,7 +1294,7 @@ La clase `RoundRobinStrategyBuilder` crea una instancia de
                 }
     },
 
-La clave "`timeslot`" es opcional, y su valor por defecto es $1$.
+La clave `timeslot`" es opcional, y su valor por defecto es $1$.
 
 La clase `MostCrowdedStrategyBuilder` crea una instancia de
 `MostCrowdedStrategy` a partir de la siguiente estructura
@@ -1315,9 +1307,9 @@ La clase `MostCrowdedStrategyBuilder` crea una instancia de
                 }
     }
 
-La clave "`timeslot`" es opcional y su valor por defecto es $1$.
+La clave `timeslot`" es opcional y su valor por defecto es $1$.
 
-En las dos estructuras anteriores, la clave "`timeslot`" es opcional,
+En las dos estructuras anteriores, la clave `timeslot`" es opcional,
 con un valor por defecto de $1$. Una vez que se definan las clases
 anteriores, se pueden usar para crear la factorı́a correspondiente de la
 siguiente forma:
@@ -1335,7 +1327,7 @@ a los cruces (ver el "builder" para un cruce que se explica más abajo).
 Para esta factorı́a necesitamos dos "builders",
 `MoveFirstStrategyBuilder` y
 `MoveAllStrategyBuilder`, ambas extendiendo a
-`Builder\<DequeuingStrategy\>`, ya que ambos "builders"
+`Builder<DequeuingStrategy>`, ya que ambos "builders"
 necesitan crear instancias de las clases que implementan a
 `DequeuingStrategy`.
 
@@ -1348,7 +1340,7 @@ La clase `MoveFirstStrategyBuilder` crea una instancia de
        "data" : {}
     },
 
-La clave "`data`" se puede omitir ya que no incluye ninguna información.
+La clave `data`" se puede omitir ya que no incluye ninguna información.
 
 La clase `MoveAllStrategyBuilder` crea una instancia de
 `MoveAllStrategy` a partir de la estructura `JSON`:
@@ -1358,7 +1350,7 @@ La clase `MoveAllStrategyBuilder` crea una instancia de
        "data" : {}
     },
 
-La clave "`data`" se puede omitir ya que no incluye ninguna información.
+La clave `data`" se puede omitir ya que no incluye ninguna información.
 
 Una vez definidas las clases anteriores, podemos utilizarlas para crear
 la factorı́a correspondiente de la siguiente forma:
@@ -1373,7 +1365,7 @@ la factorı́a correspondiente de la siguiente forma:
 Para esta factorı́a necesitamos un "builder" para cada clase de evento
 utilizado en la práctica, definidos en la Sección
  [1.5.3](#sec:events){reference-type="ref" reference="sec:events"}.
-Todos los "builders" deben extender a `Builder\<Event\>`,
+Todos los "builders" deben extender a `Builder<Event>`,
 ya que deben crear instancias de clases que extienden a
 `Event`.
 
@@ -1392,9 +1384,9 @@ La clase `NewJunctionEventBuilder` crea una instancia de
       }
     }
 
-La clave "`coor`" es una lista que contiene las coordenadas
+La clave `coor`" es una lista que contiene las coordenadas
 `x` e `y` (en este orden). Observa que su
-sección "`data`" incluye estructuras `JSON` para describir las
+sección `data`" incluye estructuras `JSON` para describir las
 estrategias que se deben usar. Asumimos que las factorı́as para estas
 estrategias se suministran a la constructora de este "builder", es
 decir, su constructora debe declararse como sigue (más tarde veremos
@@ -1494,10 +1486,10 @@ la factorı́a correspondiente, utilizando el siguiente código:
     // ...
     Factory<Event> eventsFactory = new BuilderBasedFactory<>(ebs);
 
-### El controlador {#sec:controllerc}
+### El controlador
 
 El controlador se implementa en la clase `Controller`,
-dentro del paquete "`simulator.control`". Esta clase es la
+dentro del paquete `simulator.control`". Esta clase es la
 responsable de:
 
 -   leer los eventos de un `InputStream` y añadirlos al
@@ -1512,7 +1504,7 @@ atributos (no públicos):
 -   *traffic simulator* (de tipo `TrafficSimulator`):
     utilizado para ejecutar la simulación.
 
--   *events factory* (de tipo `Factory\<Event\>`): que se
+-   *events factory* (de tipo `Factory<Event>`): que se
     usa para parsear los eventos suministrados por el usuario.
 
 Tiene sólo la constructora pública:
@@ -1564,7 +1556,7 @@ Además esta clase tendrá los siguientes métodos:
 -   `public void reset()`: invoca al método
     `reset` del simulador de tráfico.
 
-## Clase Main {#sec:main}
+## Clase Main
 
 Te facilitaremos, junto con la práctica, un esqueleto de la clase
 `Main`, que usa una librerı́a externa para simplificar el
@@ -1594,7 +1586,7 @@ añadir código para procesar la opción `-t` (estudiando como
 se ha hecho para otras opciones). Observa que es un argumento opcional,
 que en caso de no ser proporcionado, tendrá como valor $10$.
 
-## Otros comentarios {#sec:app}
+## Otros comentarios
 
 -   El directorio `resources/examples` incluye un conjunto
     de ejemplos, junto con su salida esperada, que puedes usar para
@@ -1613,7 +1605,7 @@ que en caso de no ser proporcionado, tendrá como valor $10$.
 
 -   Para escribir fácilmente en un `OutputStream`
     `out`, primero crea un `PrintStream`
-    utilizando "`PrintStream p = new PrintStream(out);`" y
+    utilizando `PrintStream p = new PrintStream(out);`" y
     después usa comandos como `p.println(\"\...\")`,
     `p.print(\"\...")`, etc.
 
@@ -1623,5 +1615,4 @@ que en caso de no ser proporcionado, tendrá como valor $10$.
     espacios en blanco. El segundo muestra la estructura `JSON`, donde
     el argumento es el número de espacios que añade a cada nivel de
     indentación.
-
-[^1]: <https://en.wikipedia.org/wiki/JSON>
+    
