@@ -1521,17 +1521,13 @@ Además esta clase tendrá los siguientes métodos:
     `in` incluye (el texto de) una estructura `JSON` de la
     forma:
 
-    ::: center
-    `{ “events”: [`$e_1$`,…,`$e_n$`] }`
-    :::
+        { "events": [e-1,…,e-n] }
 
-    donde cada $e_i$ es a su vez una estructura `JSON` asociada a un
+    donde cada `e-i` es a su vez una estructura `JSON` asociada a un
     evento. Este método primero convierte la entrada `JSON` en un objeto
     `JSONObject` utilizando:
 
-    ::: center
-    `JSONObject jo = new JSONObject(new JSONTokener(in));`
-    :::
+        JSONObject jo = new JSONObject(new JSONTokener(in));
 
     y después extrae cada $e_i$ de `jo`, crea el evento
     correspondiente `e` utilizando la *factorı́a de
@@ -1545,12 +1541,10 @@ Además esta clase tendrá los siguientes métodos:
     los diferentes estados en `out` utilizando el siguiente
     formato `JSON`:
 
-    ::: center
-    `{ "states": [`$s_1$`,…,`$s_n$`] }`
-    :::
+        { "states": [s-1,…,s-n] }
 
-    donde $s_i$ es el estado del simulador **después de** ejecutar el
-    paso $i$. Observa que el estado $s_i$ se obtiene llamando al método
+    donde `s-i` es el estado del simulador **después de** ejecutar el
+    paso `i`. Observa que el estado $s_i$ se obtiene llamando al método
     `report()` del simulador de tráfico.
 
 -   `public void reset()`: invoca al método
@@ -1606,8 +1600,8 @@ que en caso de no ser proporcionado, tendrá como valor $10$.
 -   Para escribir fácilmente en un `OutputStream`
     `out`, primero crea un `PrintStream`
     utilizando `PrintStream p = new PrintStream(out);`" y
-    después usa comandos como `p.println(\"\...\")`,
-    `p.print(\"\...")`, etc.
+    después usa comandos como `p.println("...")`,
+    `p.print("...")`, etc.
 
 -   Para transformar un `JSONObject` `jo` a
     `String`, utiliza `jo.toString()` o
