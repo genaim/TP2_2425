@@ -43,13 +43,11 @@ consisting of attribute-value pairs and array data types. We will use
 
 Briefly, a `JSON` structure is a structured text of the form:
 
-::: center
-`{ "key`$_1$`: value`$_1$`, ..., "key`$_n$`: value`$_n$` }`
-:::
+    { "key-1": value-1, ..., "key-n": value-n }`
 
-where `key`$_i$ is a sequence of characters (representing a key) and
-`value`$_i$ is a valid `JSON` value: a number, a string, another `JSON`
-structure, or an array `[o`$_1$`,…,o`$_k$`]` where `o`$_i$ is a valid
+where `key-i` is a sequence of characters (representing a key) and
+`value-i` is a valid `JSON` value: a number, a string, another `JSON`
+structure, or an array `[o-1,...,o-k]` where `o-i` is a valid
 `JSON` value. Here is an example:
 
     {
@@ -78,8 +76,7 @@ two `JSON` structures are considered semantically equal if they have the
 same set of keys and corresponding values, it is not required that they
 are syntactically identical. We also provide you with a program that
 runs your assignment on a set of examples and compares the output to the
-expected one -- see Section [1.8](#sec:app){reference-type="ref"
-reference="sec:app"}.
+expected one -- see Section [*Other Comments*](#other-comments).
 
 ## Traffic Simulator Overview
 
@@ -112,31 +109,26 @@ standard output.
 
 The description of the assignment is done as follows:
 
--   in Section [1.5](#sec:model){reference-type="ref"
-    reference="sec:model"} we describe the model part, i.e., the
+-   in Section [*Model](#model) we describe the model part, i.e., the
     components that define the logic of the traffic simulator.
 
--   in Section [1.6](#sec:controller){reference-type="ref"
-    reference="sec:controller"} we describe the control part, i.e., the
-    components that make it possible for a user to interact with the
-    model classes easily.
+-   in Section [*Control*](#control) we describe the
+    cotntrol part, i.e., the mponents that make it possible for a user to
+    interact with the classes easily.
 
--   in Section [1.7](#sec:main){reference-type="ref"
-    reference="sec:main"} we describe the main class.
+-   in Section [*Main Class*](#main-class) we describe the main class.
 
 ## Model 
 
 In this part we describe the classes that define the logic of the
-traffic simulator: in Section [1.5.1](#sec:simobj){reference-type="ref"
-reference="sec:simobj"} we describe the different classes required to
+traffic simulator: in Section [*Simulated Objects*](#simulated-objects)
+we describe the different classes required to
 model junctions, roads, and vehicles; in
-Section [1.5.2](#sec:roadmap){reference-type="ref"
-reference="sec:roadmap"} we describe a class that will be used to group
+Section [*Roads*](#roads) we describe a class that will be used to group
 all simulated objects, that we refer to as *the road-map*; in
-Section [1.5.3](#sec:events){reference-type="ref"
-reference="sec:events"} we describe the different classes for events (to
+Section [*Events*](#events) we describe the different classes for events (to
 create vehicles, junction, roads, and change some of their properties);
-in Section [1.5.4](#sec:sim){reference-type="ref" reference="sec:sim"}
+in Section [*The Simulator Class*](#the-simulator-class)
 we describe the traffic simulator class, which is the one responsible
 managing the simulation.
 
@@ -145,7 +137,7 @@ managing the simulation.
 There are 3 types of simulated objects:
 
 -   vehicles, which can drive through roads and contaminate by emitting
-    $\mathtt{CO}_2$;
+    \mathtt{CO}_2;
 
 -   one-way roads on which vehicles travel, and they manage the speed of
     vehicles to reduce contamination, etc.;
@@ -216,14 +208,14 @@ forbidden to declare fields as `public`):
 
 -   *location* (of type `int`): the vehicle's position on
     the road on which it is traveling (the distance from the beginning
-    of the road, i.e., point $0$).
+    of the road, i.e., point 0).
 
 -   *contamination class* (of type `int`): a number between
-    $0$ and $10$ (both inclusive) that is used to calculate the
-    $\mathtt{CO}_2$ emitted by the vehicle in each simulation step.
+    0 and 10 (both inclusive) that is used to calculate the
+    \mathtt{CO}_2 emitted by the vehicle in each simulation step.
 
 -   *total contamination* (of type `int`): the total
-    $\mathtt{CO}_2$ emitted by the vehicle so far.
+    \mathtt{CO}_2 emitted by the vehicle so far.
 
 -   *total traveled distance* (of type `int`): the total
     distance traveled by the vehicle.
@@ -244,10 +236,10 @@ values and throw corresponding exceptions otherwise:
 
 `maxSpeed` should be positive;
 
-`contClass` should be between $0$ and $10$ (both
+`contClass` should be between 0 and 10 (both
 inclusive);
 
-the length of the list `itinerary` should be at least $2$.
+the length of the list `itinerary` should be at least 2.
 :::
 
 Besides, do not store list `itinerary` as it is received by
@@ -268,7 +260,7 @@ package protected):
 -   `void setContaminationClass(int c)`: sets the
     contamination class of the vehicle to `c`. It should
     throw a corresponding exception if `c` is not between
-    $0$ and $10$ (both inclusive).
+    0 and 10 (both inclusive).
 
 -   `void advance(int time)`: if the vehicle's status is
     not *Traveling*, it does nothing, otherwise:
@@ -277,10 +269,10 @@ package protected):
         location* plus *the current speed*; (ii) the length of the
         current road;
 
-    (b) calculate the contamination produced as $c=l*f$ where $f$ is the
-        contamination factor and $l$ is the distance traveled in this
+    (b) calculate the contamination produced as `c=l*f` where `f` is the
+        contamination factor and `l` is the distance traveled in this
         simulation step, i.e., the new location minus the previous
-        location, and then add $c$ to the vehicle's *total
+        location, and then add `c` to the vehicle's *total
         contamination* and also to the current road contamination by
         calling the corresponding method of class `Road`.
 
@@ -292,7 +284,7 @@ package protected):
 
 -   `void moveToNextRoad()`: moves the vehicle to the next
     road. This is done by *exiting* the current road and *entering* the
-    next road at location $0$ of its itinerary -- exiting and entering
+    next road at location 0 of its itinerary -- exiting and entering
     roads is done by calling the corresponding methods of class
     `Road`. To find the next road, it should ask the
     junction at which the vehicle is waiting now (or the first one of
@@ -323,7 +315,7 @@ package protected):
 
     where `id` is the vehicle's identifier; `speed` is its current
     speed; `distance` is the total distance traveled by the vehicle;
-    `co2` is the total $\mathtt{CO}_2$ emitted by the vehicle;
+    `co2` is the total \mathtt{CO}_2 emitted by the vehicle;
     `class` is the contamination class of the vehicle; `status` is
     the status of the vehicle which can be `PENDING`, `TRAVELING`,
     `WAITING`, or `ARRIVED`; `road` is the identifier of the road
@@ -337,7 +329,7 @@ information: `getLocation()`, `getSpeed()`,
 `getStatus()`,`getTotalCO2()`,
 `getItinerary()`, `getRoad()`. You can define
 additional setters as far as they are *private*. **Make sure that the
-speed of the vehicle is $0$ when its status is not *Traveling***.
+speed of the vehicle is 0 when its status is not *Traveling***.
 
 #### Roads
 
@@ -380,7 +372,7 @@ declare fields as `public`):
 
 -   *total contamination* (of type `int`): the total
     accumulated contamination of the road. I.e., the total
-    $\mathtt{CO}_2$ emitted by the vehicles that traveled on the road so
+    \mathtt{CO}_2 emitted by the vehicles that traveled on the road so
     far.
 
 -   *vehicles* (of type `List\<Vehicle\>`): a list of the
@@ -415,8 +407,8 @@ protected):
 -   `void enter(Vehicle v)`: is used by vehicles to enter a
     given road. It simply adds the vehicle to the corresponding vehicles
     list (at the end). It should check that following hold and throw a
-    corresponding exception otherwise: the vehicle's location is $0$;
-    the vehicle's speed is $0$.
+    corresponding exception otherwise: the vehicle's location is 0;
+    the vehicle's speed is 0.
 
 -   `void exit(Vehicle v)`: used by vehicles to exit the
     road. It simply removes the vehicle from the vehicles list.
@@ -426,7 +418,7 @@ protected):
     `null` and throw a corresponding exception otherwise.
 
 -   `void addContamination(int c)`: add `c`
-    units of $\mathtt{CO}_2$ to the total contamination of the road. It
+    units of \mathtt{CO}_2 to the total contamination of the road. It
     should check that `c` is non-negative and throw a
     corresponding exception otherwise.
 
@@ -446,7 +438,7 @@ protected):
     road as follows:
 
     (1) calls `reduceTotalContamination` to reduce the
-        total contamination, i.e., some $\mathtt{CO}_2$ vanish.
+        total contamination, i.e., some \mathtt{CO}_2 vanish.
 
     (2) calls `updateSpeedLimit` to set the speed limit for
         the current simulation step.
@@ -493,20 +485,20 @@ class called `InterCityRoad` that extends
 
 -   method `reduceTotalContamination` reduces the total
     contamination to the value of `((100 - x) \* tc) /
-    100)` where $\textsf{tc}$ is the current total
+    100)` where \textsf{tc} is the current total
     contamination and `x` depends on the weather
-    conditions: $2$ in case of `SUNNY` weather, $3$ in case
-    of `CLOUDY` weather, $10$ in case of
-    `RAINY` weather, $15$ in case of `WINDY`
-    weather, and $20$ in case of a `STORM`.
+    conditions: 2 in case of `SUNNY` weather, 3 in case
+    of `CLOUDY` weather, 10 in case of
+    `RAINY` weather, 15 in case of `WINDY`
+    weather, and 20 in case of a `STORM`.
 
 -   method `updateSpeedLimit` sets the speed limit to
-    $50\%$ of the maximum speed (i.e., to `maxSpeed\*/2`)
+    50\% of the maximum speed (i.e., to `maxSpeed\*/2`)
     if the total contamination exceeds the contamination alarm limit,
     and to the maximum speed otherwise.
 
 -   method `calculateVehicleSpeed` calculates the speed of
-    a vehicle as to the speed limit of the road but reduced by $20\%$
+    a vehicle as to the speed limit of the road but reduced by 20\%
     (i.e., `(speedLimit\*8)/10`) in case of a
     `STORM`.
 
@@ -521,9 +513,9 @@ Moreover, the reduction of contamination does not depend much on the
 weather as before. Its behavior is as follows:
 
 -   method `reduceTotalContamination` reduces the total
-    contamination by `x` $\mathtt{CO}_2$ units where
-    `x` depends on the weather conditions: $10$ in case of
-    `WINDY` weather or a `STORM`, and $2$
+    contamination by `x` \mathtt{CO}_2 units where
+    `x` depends on the weather conditions: 10 in case of
+    `WINDY` weather or a `STORM`, and 2
     otherwise. Make sure that total contamination does not become
     negative.
 
@@ -577,8 +569,8 @@ which has a single method `chooseNextGreen` that receives:
     junction).
 
 -   `qs`: a list of lists of vehicles, where the (inner)
-    lists of vehicles represent queues. The $i$-th queue corresponds to
-    the $i$-th road in the list `roads`. Note that we use
+    lists of vehicles represent queues. The i-th queue corresponds to
+    the i-th road in the list `roads`. Note that we use
     the type `List\<Vehicle\>` and not
     `Queue\<Vehicle\>` to represent a queue since the
     interface `Queue` does not guarantee any order when the
@@ -586,12 +578,12 @@ which has a single method `chooseNextGreen` that receives:
     which the elements were added).
 
 -   `currGreen`: the index (in list `roads`)
-    of the road with a green light. The value $-1$ is used to indicate
+    of the road with a green light. The value -1 is used to indicate
     that all are red.
 
 -   `lastSwitchingTime`: the simulation time at which the
     light for the road `currGreen` was switched from *red*
-    to *green*. If `currGreen` is $-1$ then it is the last
+    to *green*. If `currGreen` is -1 then it is the last
     time all switched to red.
 
 -   `currTime`: the current simulation time.
@@ -599,7 +591,7 @@ which has a single method `chooseNextGreen` that receives:
 The method returns the index of the road (in the list
 `roads`) to be switched to *green* -- if it is the same as
 `currGreen` then, the junction will not consider it as
-switching. If it returns $-1$ it means all should be red.
+switching. If it returns -1 it means all should be red.
 
 We have two light switching strategies `RoundRobinStrategy`
 and `MostCrowdedStrategy` (in package
@@ -611,11 +603,11 @@ these two strategies.
 
 Strategy `RoundRobinStrategy` behaves as follows:
 
--   if the list of roads is empty, return $-1$.
+-   if the list of roads is empty, return -1.
 
 -   if the lights of all incoming roads are red (i.e.,
-    `currGreen` is $-1$), it gives green to the first one
-    of in list of `roads` (i.e., it returns $0$); otherwise
+    `currGreen` is -1), it gives green to the first one
+    of in list of `roads` (i.e., it returns 0); otherwise
 
 -   if `currTime-lastSwitchingTime \< timeSlot`, it keeps
     the lights as they are (i.e., it returns `currGreen`);
@@ -627,11 +619,11 @@ Strategy `RoundRobinStrategy` behaves as follows:
 
 Strategy `MostCrowdedStrategy` behaves as follows:
 
--   if the list of roads is empty, return $-1$.
+-   if the list of roads is empty, return -1.
 
 -   if the lights of all incoming roads are red, it gives green to the
     incoming road with the largest *queue*, starting the search (in
-    `qs`) from position $0$. If there is more than one with
+    `qs`) from position 0. If there is more than one with
     the same maximal size, it picks the first one that it finds during
     the search.
 
@@ -692,20 +684,20 @@ forbidden to declare fields as `public`):
     at junction `j`.
 
 -   *list of queues* (of type `List\<List\<Vehicle\>\>`): a
-    list of queues for incoming roads -- the $i$-th queue (represented
-    as `List\<Vehicle\>`) corresponds to the $i$-th road in
+    list of queues for incoming roads -- the i-th queue (represented
+    as `List\<Vehicle\>`) corresponds to the i-th road in
     the *list of incoming roads*. It is also recommended to keep a
     road-queue map (of type `Map\<Road,List\<Vehciles\>`)
     to make the search for the queue of a given road more efficient.
 
 -   *green light index* (of type `int`): the index of the
     incoming road (in the list of incoming roads) that currently has a
-    green light. The value $-1$ is used to indicate that all incoming
+    green light. The value -1 is used to indicate that all incoming
     roads have a red light.
 
 -   *last switching time* (of type `int`): the time at
     which the *green light index* has been changed value. Its initial
-    value is $0$.
+    value is 0.
 
 -   *light Switching strategy* (of type
     `LightSwitchingStrategy`): a strategy for switching
@@ -779,7 +771,7 @@ package protected):
          {
           "id" : "j3",
           "green" : "r1",
-          "queues" : [Q1,Q2,....]
+          "queues" : [Q1,Q2,...]
          }
 
     where `id` is the junction's identifier; `green` is the
@@ -789,7 +781,7 @@ package protected):
 
          {
           "road"  : "r3",
-          "vehicles" : ["v1","v2",....]
+          "vehicles" : ["v1","v2",...]
          }
 
     where `road` is the road identifier, and `vehicles` is the list
@@ -895,8 +887,8 @@ like the order of the corresponding lists of `RoadMap`.
 Events allow us to set up and interact with the simulator, by adding
 vehicles, roads, and junctions; changing the weather conditions of
 roads; changing the contamination class of vehicles. Each event has a
-time at which it should be executed. At each tick $t$, the simulator
-executes all events scheduled at time $t$, in the order in which they
+time at which it should be executed. At each tick `t`, the simulator
+executes all events scheduled at time `t`, in the order in which they
 were added to the event queue. Executing an event is done by calling a
 corresponding method.
 
@@ -1049,7 +1041,7 @@ forbidden to declare fields as `public`):
     provided in package `simulator.misc`.
 
 -   *simulation time* (of type `int`): the simulation time,
-    initialized to $0$.
+    initialized to 0.
 
 Class `TrafficSimulator` has only one public constructor
 without any parameter, it simply initializes the fields.
@@ -1075,7 +1067,7 @@ means package protected):
     4.  calls method `advance` of all roads.
 
 -   `public void reset()`: clears the *road-map* and the
-    *list of events*, and sets the *simulation time* to $0$.
+    *list of events*, and sets the *simulation time* to 0.
 
 -   `public JSONObject report()`: return the simulator's
     state in the following `JSON` format:
@@ -1253,7 +1245,7 @@ Builder `RoundRobinStrategyBuilder` creates an instance of
                 } 
     },
 
-Key `timeslot` is optional, its default value is $1$.
+Key `timeslot` is optional, its default value is 1.
 
 Builder `MostCrowdedStrategyBuilder` creates an instance of
 `MostCrowdedStrategy` from the following `JSON` structure:
@@ -1265,10 +1257,10 @@ Builder `MostCrowdedStrategyBuilder` creates an instance of
                 } 
     }
 
-Key `timeslot` is optional, its default value is $1$.
+Key `timeslot` is optional, its default value is 1.
 
 In both cases above, key `timeslot` is optional, its default value is
-$1$.
+1.
 
 Once the above builders are defined, we can use them to create a
 corresponding factory as follows:
@@ -1481,19 +1473,15 @@ Class `Controller` has the following methods:
     that `in` includes (the text of) a `JSON` structure of
     the form
 
-    ::: center
-    `{ "events": [`$e_1$`,…,`$e_n$`] }`
-    :::
+        { "events": [e-1,...,e-n] }
 
-    where each $e_i$ is a `JSON` structure that corresponds to an event.
+    where each `e-i` is a `JSON` structure that corresponds to an event.
     This method first converts the input `JSON` into a
     `JSONObject` using
 
-    ::: center
-    `JSONObject jo = new JSONObject(new JSONTokener(in));`
-    :::
+        JSONObject jo = new JSONObject(new JSONTokener(in));
 
-    and then extracts each $e_i$ from `jo`, creates a
+    and then extracts each `e-i` from `jo`, creates a
     corresponding event `e` using the *events factory*, and
     adds it to the simulator by calling method `addEvent`.
     The method should throw a corresponding exception if the input
@@ -1504,12 +1492,10 @@ Class `Controller` has the following methods:
     exactly `n` times, and prints to the different states
     to `out` in the following `JSON` format:
 
-    ::: center
-    `{ "states": [`$s_1$`,…,`$s_n$`] }`
-    :::
+        { "states": [s-1,...,s-n] }
 
-    where $s_i$ is the state of the simulator **after** executing step
-    $i$. Note that state $s_i$ is obtained by calling method
+    where `s-i` is the state of the simulator **after** executing step
+    `i`. Note that state `s-i` is obtained by calling method
     `report` of the traffic simulator object.
 
 -   `public void reset()`: calls method
@@ -1539,13 +1525,13 @@ The main class should support the following command-line options:
 The first example writes the output to a file `output.json` and the
 second to the standard output (= the console). In both cases the input
 events file is `eventsfile.json` and the simulation is executed for
-$100$ ticks.
+100 ticks.
 
 You will have to complete methods `initFactories` and
 `startBatchMode`, and add a support for the command-line
 option `-t` (by studying how it is done already for other
 options). Note that it is an optional argument, i.e., if it is not
-provided in the command-line then its value should be $10$.
+provided in the command-line then its value should be 10.
 
 ## Other Comments 
 
