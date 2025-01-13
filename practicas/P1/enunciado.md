@@ -10,6 +10,13 @@ autorizadas explı́citamente por el profesor. En caso de detección de
 copia ls calificación en la convocatoria de TP2 en la que se haya
 detectado la copia será 0.
 
+Si decides almacenar tu código en un repositorio remoto, por ejemplo
+en un sistema de control de versiones gratuito con vistas a facilitar
+la colaboración con tu compañero de laboratorio, asegúrate de que tu
+código no esté al alcance de los motores de búsqueda. Si alguien que
+no sea el profesor de tu asignatura, por ejemplo un empleador de una
+academia privada, te pide que facilites tu código, debes negarte.
+
 ## Instrucciones generales
 
 Las siguientes instrucciones **son estrictas**, es decir, debes
