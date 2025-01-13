@@ -6,20 +6,9 @@ Durante el curso se realizará control de copias de todas las prácticas,
 comparando las entregas de todos los grupos de TP2. Se considera copia
 la reproducción total o parcial del código de otros alumnos o cualquier
 código extraı́do de Internet o de cualquier otra fuente, salvo aquellas
-autorizadas explı́citamente por el profesor.
-
-En caso de detección de copia se informará al *Comité de Actuación ante
-Copias* que citará al alumno infractor y, si considera que es necesario
-sancionar al alumno, propondrá una de las medidas siguientes:
-
--   Calificación de cero en la convocatoria de TP2 en la que se haya
-    detectado la copia.
-
--   Calificación de cero en todas las convocatorias de TP2 del curso
-    actual.
-
--   Apertura de expediente académico ante la *Inspección de Servicios de
-    la Universidad*.
+autorizadas explı́citamente por el profesor. En caso de detección de 
+copia ls calificación en la convocatoria de TP2 en la que se haya
+detectado la copia será 0.
 
 ## Instrucciones generales
 
