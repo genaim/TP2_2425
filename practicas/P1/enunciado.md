@@ -446,15 +446,15 @@ declaración debes respetar:
 -   `void advance(int time)`: avanza el estado de la
     carretera de la siguiente forma:
 
-    (1) llama a `reduceTotalContamination` para reducir la
+    1. llama a `reduceTotalContamination` para reducir la
         contaminación total, es decir, la disminución de
         CO<sub>2</sub>.
 
-    (2) llama a `updateSpeedLimit` para establecer el
+    2. llama a `updateSpeedLimit` para establecer el
         lı́mite de velocidad de la carretera en el paso de simulación
         actual.
 
-    (3) recorre la lista de vehı́culos (desde el primero al último) y,
+    3. recorre la lista de vehı́culos (desde el primero al último) y,
         para cada vehı́culo:
 
         1.  pone la velocidad del vehı́culo al valor devuelto por
