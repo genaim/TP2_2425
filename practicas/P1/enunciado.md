@@ -73,7 +73,7 @@ mismo conjunto de pares clave-valor. No es necesario que las estructuras
 sean sintácticamente idénticas. También suministramos un programa que
 ejecuta tu práctica sobre un conjunto de ejemplos, y compara su salida
 con la salida esperada --ver la
-sección [Otros Comentarios](#otros-comentarios).
+sección [*Otros Comentarios*](#otros-comentarios).
 
 ## Introducción al simulador de tráfico
 
@@ -118,7 +118,7 @@ describe la clase encargada de agrupar todos los objetos de la
 simulación, es decir, la clase que implementa un *mapa de carreteras*.
 El proceso de creación de eventos (vehı́culos, cruces, carreteras y
 cambio de alguna de sus propiedades) aparece en la sección 
-[Eventos](#eventos).
+[*Eventos*](#eventos).
 Finalmente, la sección [*La clase TrafficSimulator*](#la-clase-trafficsimulator) contendrá la descripción de la clase que implementa
 el simulador de tráfico, que es la clase responsable de controlar la
 simulación.
@@ -189,8 +189,7 @@ información (recuerda que está prohibido declarar los atributos como
 -   *itinerario* (de tipo `List<Junction>`): una lista de
     cruces que representa el itinerario del vehı́culo. La clase
     `Junction` representa los cruces y se describe en la
-    Sección [\[sec:Junction\]](#sec:Junction){reference-type="ref"
-    reference="sec:Junction"}.
+    sección [*Cruces*](#cruces).
 
 -   *velocidad máxima* (de tipo `int`): la velocidad máxima
     a la cual puede viajar el vehı́culo.
@@ -208,8 +207,7 @@ información (recuerda que está prohibido declarar los atributos como
 -   *carretera* (de tipo `Road`): la carretera sobre la que
     el coche está circulando. Debe ser `null` en caso de
     que no esté en ninguna carretera. La clase `Road` se
-    define en la Sección [1.5.1.2](#sec:claseRoad){reference-type="ref"
-    reference="sec:claseRoad"}.
+    define en la sección [*Careterras*](#careterras).
 
 -   *localización* (de tipo `int`): la localización del
     vehı́culo en la carretera sobre la que está circulando, es decir, la
@@ -1138,12 +1136,10 @@ determinado de pasos.
 Vamos a usar estructuras `JSON` para describir eventos, y utilizaremos
 factorı́as para parsear estas estructuras y transformarlas en objetos de
 la simulación. En la
-Sección [1.6.1](#sec:factories){reference-type="ref"
-reference="sec:factories"} describimos las factorı́as necesarias para
+sección [*Factorı́as*](#factorı́as) describimos las factorı́as necesarias para
 facilitar la creación de eventos a partir de las estructuras `JSON`; y
-en la Sección [1.6.2](#sec:controllerc){reference-type="ref"
-reference="sec:controllerc"} describiremos el controlador, que es la
-clase que permite cargar eventos desde un `InputStream` y
+en la sección [*Controlador*](#controller) describiremos el controlador, 
+que es la clase que permite cargar eventos desde un `InputStream` y
 ejecutar el simulador un número concreto de pasos.
 
 ### Factorı́as
@@ -1352,8 +1348,8 @@ la factorı́a correspondiente de la siguiente forma:
 #### Eventos "Factory"
 
 Para esta factorı́a necesitamos un "builder" para cada clase de evento
-utilizado en la práctica, definidos en la Sección
- [1.5.3](#sec:events){reference-type="ref" reference="sec:events"}.
+utilizado en la práctica, definidos en la sección
+ [*Eventos*](#eventos).
 Todos los "builders" deben extender a `Builder<Event>`,
 ya que deben crear instancias de clases que extienden a
 `Event`.
