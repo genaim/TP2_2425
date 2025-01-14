@@ -19,22 +19,19 @@ academia privada, te pide que facilites tu código, debes negarte.
 
 ## Instrucciones generales
 
-Las siguientes instrucciones **son estrictas**, es decir, debes
-seguirlas obligatoriamente.
+Las siguientes instrucciones **son estrictas**, es decir, debes seguirlas obligatoriamente.
 
-1.  Descárgate del Campus Virtual la plantilla del proyecto. Debes
-    desarrollar la práctica usando esta plantilla.
-
-2.  Pon los nombres de los componentes del grupo en el fichero
-    `NAMES.txt`. Cada miembro en una lı́nea separada.
-
-3.  Debes seguir estrictamente la estructura de paquetes y clases
-    sugerida por el profesor y/o descrita en el enunciado.
-
-4.  Cuando entregues la práctica, sube un fichero **zip** del proyecto,
-    incluyendo todos los subdirectorios excepto el subdirectorio
-    **bin**. **Otros formatos (por ejemplo `7zip`, `rar`, etc.) no están
-    permitidos**.
+1. Lee el enunciado completo de la práctica antes de empezar.
+2. Crea un proyecto Java vacío en Eclipse (usar como mínimo `JDK17`). 
+3. Descarga `lib.zip` y descomprimelo en la raíz del proyecto (al mismo nivel de `src`), y añade las librerías al proyecto (Elegir `Project -> Properties -> BuildPath -> Libraries`, marcar `ClassPath`, pulsar el botón `Add Jars` y seleccionar la librería que quieres añadir).
+4. Descarga `resources.zip` y descomprimelo en la raíz del proyecto (al mismo nivel de `src`).
+5. Descarge `src.zip` y reemplaza el directorio `src` del proyecto por este `src` (o copia el contenido).
+6. Es muy importante que cada miembro del grupo haga los puntos 2-5, porque en el examen tendrás que hacerlo usando el `src.zip` de tu práctica (no vas a usar un proyecto ya montado).
+7. Es necesario usar exactamente la misma estructura de paquetes y los mismos nombres de clases que aparecen en el enunciado.
+8. Debes formatear todo el código usando la funcionalidad de Eclipse (`Source->Format`).
+9. Todas las constructoras tienen que comprobar la validez de los parámetros y lanzar excepciones correspondientes con mensaje informativo (se puede usar `IllegalArgumentException`).
+10. En la corrección tendremos en cuenta el estilo de código: uso de nombres adecuados para métodos/variables/clases, el formateo de código indicado en el punto anterior, etc.
+11. Cuando entregues la práctica sube un fichero con el nombre `src.zip` que incluya solo la carpeta `src`. **No está permitido llamarlo con otro nombre ni usar 7zip, rar, etc.** 
 
 ## Análisis y creación de datos `JSON` en Java
 
