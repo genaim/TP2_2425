@@ -19,20 +19,19 @@ refuse.
 
 ## General instructions
 
-The following instruction are strict, you **MUST** follow them.
+The following instructions **are strict**, i.e. you must follow them.
 
-1.  Download the Java project template that we provide in the Campus
-    Virtual. You must develop your assignment using this template.
-
-2.  Fill in your name(s) in the file `NAMES.txt`, each member in a
-    separate line.
-
-3.  You have to strictly follow the package structure and class names
-    that we suggest in the assignment description.
-
-4.  Submit a **zip** file of the project's directory, including all
-    subdirectories except the **bin** directory. **Other formats (e.g.,
-    `7zip`, `rar`, etc.) are not accepted**.
+1. Read the complete assigment statement before you start.
+2. Create an empty Java project in Eclipse (use at least `JDK17`). 
+3. Download `lib.zip` and unzip it to the root of the project (at the same level as `src`), and add the libraries to the project (Choose `Project -> Properties -> BuildPath -> Libraries`, check `ClassPath`, press the `Add Jars` button and select the library you want to add).
+4. Download `resources.zip` and unzip it to the root of the project (at the same level as `src`).
+5. Download `src.zip` and replace the `src` directory of the project with this `src` (or copy the contents).
+6. It is very important that each member of the group does points 2-5, because in the exam you will have to do it using the `src.zip` of your assignment (you are not going to use an already assembled project).
+7. You need to use exactly the same package structure and class names as in the statement.
+8. You must format all code using the Eclipse functionality (`Source->Format`).
+9. All constructors have to check the validity of the parameters and throw corresponding exceptions with informative messages (you can use `IllegalArgumentException`).
+10. When correcting we shall take into account the code style: use of appropriate names for methods/variables/classes, the code formatting indicated in the previous point, etc.
+11. When you submit your assignment, upload a file with the name `src.zip` that includes only the `src` folder. **You are not allowed to call it by any other name or use 7zip, rar, etc.**. 
 
 ## Parsing and creating `JSON` data in Java
 
