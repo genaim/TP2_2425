@@ -7,7 +7,7 @@ different TP2 groups will be checked using anti-plagiarism software,
 by comparing them all pairwise and by searching to see if any of the
 code of any of them is copied from other sources on the Internet[^1]
 or previous years assignment. Any plagiarism detected will be treated
-asa grade of zero for the TP2-course exam session (*convocatoria*) to
+as a grade of zero for the TP2-course exam session (*convocatoria*) to
 which the assignment belongs.
 
 If you decide to store your code in a remote repository, e.g. in a
