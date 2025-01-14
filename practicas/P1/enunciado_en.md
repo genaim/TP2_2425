@@ -5,7 +5,7 @@
 For each of the TP2 assignments, all the submissions from all the
 different TP2 groups will be checked using anti-plagiarism software,
 by comparing them all pairwise and by searching to see if any of the
-code of any of them is copied from other sources on the Internet[^1]
+code of any of them is copied from other sources on the Internet
 or previous years assignment. Any plagiarism detected will be treated
 as a grade of zero for the TP2-course exam session (*convocatoria*) to
 which the assignment belongs.
