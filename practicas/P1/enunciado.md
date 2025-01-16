@@ -7,7 +7,7 @@ comparando las entregas de todos los grupos de TP2. Se considera copia
 la reproducción total o parcial del código de otros alumnos o cualquier
 código extraı́do de Internet o de cualquier otra fuente, salvo aquellas
 autorizadas explı́citamente por el profesor. En caso de detección de 
-copia ls calificación en la convocatoria de TP2 en la que se haya
+copia, la calificación en la convocatoria de TP2 en la que se haya
 detectado la copia será 0.
 
 Si decides almacenar tu código en un repositorio remoto, por ejemplo
@@ -22,10 +22,10 @@ academia privada, te pide que facilites tu código, debes negarte.
 Las siguientes instrucciones **son estrictas**, es decir, debes seguirlas obligatoriamente.
 
 1. Lee el enunciado completo de la práctica antes de empezar.
-2. Crea un proyecto Java vacío en Eclipse (usar como mínimo `JDK17`). 
-3. Descarga `lib.zip` y descomprimelo en la raíz del proyecto (al mismo nivel de `src`), y añade las librerías al proyecto (Elegir `Project -> Properties -> BuildPath -> Libraries`, marcar `ClassPath`, pulsar el botón `Add Jars` y seleccionar la librería que quieres añadir).
+2. Crea un proyecto Java vacío en Eclipse (usa como mínimo `JDK17`). 
+3. Descarga `lib.zip`, descomprímelo en la raíz del proyecto (al mismo nivel de `src`) y añade las librerías al proyecto. Para ello elige `Project -> Properties -> BuildPath -> Libraries`, marca `ClassPath`, pulsa el botón `Add Jars` y selecciona la librería que quieres añadir.
 4. Descarga `resources.zip` y descomprimelo en la raíz del proyecto (al mismo nivel de `src`).
-5. Descarge `src.zip` y reemplaza el directorio `src` del proyecto por este `src` (o copia el contenido).
+5. Descarga `src.zip` y reemplaza el directorio `src` del proyecto por este `src` (o copia el contenido).
 6. Es muy importante que cada miembro del grupo haga los puntos 2-5, porque en el examen tendrás que hacerlo usando el `src.zip` de tu práctica (no vas a usar un proyecto ya montado).
 7. Es necesario usar exactamente la misma estructura de paquetes y los mismos nombres de clases que aparecen en el enunciado.
 8. Debes formatear todo el código usando la funcionalidad de Eclipse (`Source->Format`).
@@ -72,7 +72,7 @@ comparador de ficheros en formato `JSON`, disponible en:
 <http://www.jsondiff.com>. Además, el ejemplo que aparece en el paquete
 `extra.json` incluye otra forma de comparar dos
 estructuras `JSON`, usando directamente la librerı́a. Observa que dos
-estructuras `JSON` se consideran sem'anticamente iguales si tienen el
+estructuras `JSON` se consideran semánticamente iguales si tienen el
 mismo conjunto de pares clave-valor. No es necesario que las estructuras
 sean sintácticamente idénticas. También suministramos un programa que
 ejecuta tu práctica sobre un conjunto de ejemplos, y compara su salida
@@ -99,7 +99,7 @@ incrementará en cada paso de la simulación. Un paso de la simulación
 consiste en realizar las siguientes operaciones:
 
 1.  *Procesar los eventos*. En particular estos eventos pueden añadir
-    y/o alterar el estado de los objetos simulados;
+    y/o alterar el estado de los objetos simulados.
 
 2.  *Avanzar* el estado actual de los objetos simulados atendiendo a su
     comportamiento.
@@ -109,7 +109,7 @@ consiste en realizar las siguientes operaciones:
 Los eventos se leen de un fichero de texto antes de que la simulación
 comience. Una vez leı́dos, se inicia la simulación, que se ejecutará un
 número determinado de unidades de tiempo (llamadas *ticks*) y, en cada
-*tick*, se mostrará el estado de la simulación, bien en la consola o en
+*tick* se mostrará el estado de la simulación, bien en la consola o en
 un fichero de texto.
 
 ## El modelo 
@@ -133,15 +133,15 @@ Tendremos tres tipos de objetos simulados:
 
 -   **Vehı́culos**, que viajan a través de carreteras y contaminan
     emitiendo CO<sub>2</sub>. Cada vehı́culo tendrá un itinerario, que
-    serán todos los cruces por los que tiene que pasar.
+    consistirá en la secuencia de cruces por los que tiene que pasar.
 
 -   **Carreteras de dirección única**, a través de las cuales viajan los
     vehı́culos, y que controlan la velocidad de los mismos para reducir
     la contaminación, etc.
 
 -   **Cruces**, que conectan unas carreteras con otras, organizando el
-    tráfico a través de semáforos. Los semáforos permiten decidir que
-    vehı́culos pueden avanzar a su próxima carretera de su itinerario.
+    tráfico a través de semáforos. Los semáforos permiten decidir qué
+    vehı́culos pueden avanzar a la próxima carretera de su itinerario.
     Cada cruce tendrá asociada una colección de carreteras que llegan a
     él, a las que denominaremos *carreteras entrantes*. **Desde un cruce
     sólo se puede llegar directamente a otro cruce a través de una única
@@ -161,7 +161,7 @@ indirectamente) a la siguiente clase:
       protected String _id;
 
       SimulatedObject(String id) {
-        if ( id == null || id.length() == 9)
+        if ( id == null || id.isEmpty())
           throw new IllegalArgumentException("the 'id' must be a nonempty string.");
         else
           _id = id;
@@ -176,14 +176,14 @@ indirectamente) a la siguiente clase:
         return _id;
       }
 
-      abstract void advance(int time);
+      abstract void advance(int currTime);
       abstract public JSONObject report();
     }
 
 #### Vehı́culos
 
-Habrá un único tipo de vehı́culo que implementaremos en la clase
-`Vehicle`. Esta clase que extenderá a la clase
+Habrá un único tipo de vehı́culo, que implementaremos en la clase
+`Vehicle`. Esta clase extenderá a la clase
 `SimulatedObject`, que se encuentra dentro del paquete
 `simulator.model`. La clase `Vehicle` debe
 contener atributos (campos) para almacenar al menos la siguiente
@@ -191,7 +191,7 @@ información (recuerda que está prohibido declarar los atributos como
 `public`):
 
 -   *itinerario* (de tipo `List<Junction>`): una lista de
-    cruces que representa el itinerario del vehı́culo. La clase
+    cruces, que representa el itinerario del vehı́culo. La clase
     `Junction` representa los cruces y se describe en la
     sección [*Cruces*](#cruces).
 
@@ -211,7 +211,7 @@ información (recuerda que está prohibido declarar los atributos como
 -   *carretera* (de tipo `Road`): la carretera sobre la que
     el coche está circulando. Debe ser `null` en caso de
     que no esté en ninguna carretera. La clase `Road` se
-    define en la sección [*Careterras*](#careterras).
+    define en la sección [*Carreteras*](#carreteras).
 
 -   *localización* (de tipo `int`): la localización del
     vehı́culo en la carretera sobre la que está circulando, es decir, la
@@ -234,8 +234,7 @@ información (recuerda que está prohibido declarar los atributos como
 La clase `Vehicle` tiene una única constructora *package
 protected*:
 
-    Vehicle(String id, int maxSpeed, int contClass,
-                 List<Junction> itinerary) {
+    Vehicle(String id, int maxSpeed, int contClass, List<Junction> itinerary) {
       super(id);
       // TODO complete
     }
@@ -253,8 +252,8 @@ lectura, para evitar modificarlo desde fuera:
     Collections.unmodifiableList(new ArrayList<>(itinerary));
 
 La clase `Vehicle` tiene los siguientes métodos, cuya
-declaración debes respectar (recuerda que cuando no aparece modificador
-de visibilidad, significa que el método es *package protected*):
+declaración debes respetar (recuerda que cuando no aparece modificador
+de visibilidad significa que el método es *package protected*):
 
 -   `void setSpeed(int s)`: pone la velocidad actual al
     valor mı́nimo entre `s` y la velocidad máxima del
@@ -265,7 +264,7 @@ de visibilidad, significa que el método es *package protected*):
     si `c` no es un valor entre 0 y 10 (ambos
     incluidos).
 
--   `void advance(int time)`: si el estado del vehı́culo no
+-   `void advance(int currTime)`: actualiza el estado del vehículo **1 tick**. En concreto, si el estado del vehı́culo no
     es *Traveling*, no hace nada. En otro caso:
 
     (a) se actualiza su localización al valor mı́nimo entre (i) *la
@@ -295,10 +294,10 @@ de visibilidad, significa que el método es *package protected*):
     cruce en el cual está esperando (o al primero del itinerario en caso
     de que el estado del vehı́culo sea *Pending*) mediante una invocación
     al método correspondiente de la clase Junction. Observa que la
-    primera vez que el vehı́culo llama a este método, el vehı́culo no sale
-    de ninguna carretera ya que el vehı́culo todavı́a no ha empezado a
-    circular y, que cuando el vehı́culo abandona el último cruce de su
-    itinerario, entonces no puede entrar ya a ninguna carretera dado que
+    primera vez que el vehı́culo llama a este método el vehı́culo no sale
+    de ninguna carretera, ya que el vehı́culo todavı́a no ha empezado a
+    circular y que cuando el vehı́culo abandona el último cruce de su
+    itinerario ya no puede entrar a ninguna carretera dado que
     ha finalizado su recorrido -- no olvides modificar el estado del
     vehı́culo.
 
@@ -423,7 +422,7 @@ declaración debes respetar:
     de vehı́culos de la carretera.
 
 -   `void setWeather(Weather w)`: pone las condiciones
-    atmosféericas de la carretera al valor `w`. Debe
+    atmosféricas de la carretera al valor `w`. Debe
     comprobar que `w` no es `null` y lanzar
     una excepción en caso contrario.
 
@@ -447,7 +446,7 @@ declaración debes respetar:
     `v`. La implementación especı́fica la definirán las
     subclases de `Road`.
 
--   `void advance(int time)`: avanza el estado de la
+-   `void advance(int currTime)`: avanza **1 tick** el estado de la
     carretera de la siguiente forma:
 
     1. llama a `reduceTotalContamination` para reducir la
@@ -498,6 +497,8 @@ información correspondiente: `getLength()`,
 continuación describimos las dos clases de carreteras que debes
 implementar, y que heredan de Road.
 
+##### Carreteras inter-urbanas
+
 Esta clase de carreteras se utiliza para conectar ciudades y se
 implementa a través de la clase `InterCityRoad`, que
 extiende a `Road`. La clase debe colocarse dentro del
@@ -527,6 +528,8 @@ siguientes métodos:
     vehı́culo como la velocidad lı́mite de la carretera. Si el tiempo es
     `STORM` lo reduce en un 20% (es decir,
     `(speedLimit*8)/10`).
+
+##### Carreteras urbanas
 
 Esta clase de carreteras están dentro de las ciudades y se implementan a
 través de la clase `CityRoad`, que extiende a
@@ -577,10 +580,12 @@ varias clases de cruces, que se diferenciarán en lo siguiente:
 
 No vamos a utilizar herencia para definir los cruces, sino que los
 cruces tendrán su propia estrategia. Las estrategias se encapsularán
-usando una jerarquı́a de clases. A continuación vamos a describir como
+usando una jerarquı́a de clases. A continuación vamos a describir cómo
 encapsular las estrategias para cambiar las luces de los semáforos y
 para eliminar los vehı́culos de las colas. Después presentaremos la clase
 `Junction`, que utilizará esta jerarquı́a.
+
+##### Estrategias de cambio de semáforo
 
 Estas estrategias nos servirán para decidir cuál de las carreteras
 entrantes al cruce pondrá su semáforo en verde. Para implementar las
@@ -597,7 +602,7 @@ El método `chooseNextGreen` recibe como parámetros:
 
 -   `roads`: la lista de carreteras entrantes al cruce.
 
--   `qs`: una lista de vehı́culos donde las listas internas
+-   `qs`: una lista de listas de vehı́culos, donde las listas internas
     de vehı́culos representan *colas*. La cola i-ésima corresponde a la
     cola de vehı́culos de la i-ésima carretera de la lista
     `roads`. Observa que usamos el tipo
@@ -646,7 +651,7 @@ La estrategia `RoundRobinStrategy` se comporta como sigue:
     semáforos tal cual están (es decir, devuelve
     `currGreen`).
 
-4.  devuelve `currGreen+1` modulo la longitud de la lista
+4.  en otro caso devuelve `currGreen+1` módulo la longitud de la lista
     `roads` (es decir, el ı́ndice de la siguiente carretera
     entrante, recorriendo la lista de forma circular).
 
@@ -666,13 +671,15 @@ La estrategia `MostCrowdedStrategy` se comporta como sigue:
     deja los semáforos tal cual están (es decir devuelve
     `currGreen`).
 
-4.  pone a verde el semáforo de la carretera entrante con la cola más
+4.  en otro caso pone a verde el semáforo de la carretera entrante con la cola más
     larga, realizando una búsqueda circular (en `qs`) desde
-    la posición `currGreen+1` modulo el número de
+    la posición `currGreen+1` módulo el número de
     carreteras entrantes al cruce. Si hay más de una carretera cuyas
     colas tengan el mismo tamaño maximal, entonces coge la primera que
     encuentra durante la búsqueda. Observa que podrı́a devolver
     `currGreen`.
+
+##### Estrategias de las colas de las carreteras entrantes
 
 Estas estrategias eliminan vehı́culos de las carreteras entrantes cuyo
 semáforo esté a verde. Se modelan a través de la interfaz (que debes
@@ -699,6 +706,8 @@ paquete `simulator.model`):
     vehı́culos que están en `q` (no devuelve
     `q`). El orden debe ser el mismo que cuando se itera
     `q`.
+
+##### Clase `Junction`
 
 La funcionalidad de un cruce se
 implementa a través de la clase `Junction`, que extiende a
@@ -791,7 +800,7 @@ respetar los modificadores de visibilidad tal cual se describen):
     desde el cruce actual al cruce `j`. Para esto debes
     buscar en el mapa de carreteras salientes.
 
--   `void advance(time)`: avanza el estado del cruce como
+-   `void advance(int currTime)`: avanza **1 tick** el estado del cruce como
     sigue:
 
     1.  utiliza la *estrategia de extracción de la cola* para calcular
@@ -804,7 +813,7 @@ respetar los modificadores de visibilidad tal cual se describen):
         semáforo en verde. Si es distinto del ı́ndice actual, entonces
         cambia el valor del ı́ndice al nuevo valor y pone el último paso
         de cambio de semáforo al paso actual (es decir, el valor del
-        parámetro `time`).
+        parámetro `currTime`).
 
 -   `public JSONObject report()`: devuelve el estado del
     cruce en el siguiente formato `JSON`:
@@ -874,7 +883,7 @@ tener los modificadores de visibilidad descritos abajo):
 -   `void addRoad(Road r)`: añade la carretera
     `r` al final de la lista de carreteras y modifica el
     mapa correspondiente. Debes comprobar que se cumplen lo siguiente:
-    : (i) no existe ninguna otra carretera con el mismo identificador;
+    (i) no existe ninguna otra carretera con el mismo identificador;
     y (ii) los cruces que conecta la carretera existen en el mapa de
     carreteras. En caso de que no se cumplan el método lanza una
     excepcion.
@@ -968,11 +977,11 @@ método al que el simulador llama para ejecutar el evento. La
 funcionalidad de este método se define en las subclases.
 
 En lo que sigue vamos a describir los tipos de eventos que existen en el
-simulador, todos ellos extenderán a la clase `Event` y
+simulador. Todos ellos extenderán a la clase `Event` y
 deben estar colocados dentro del paquete
 `simulator.model`. La constructora de cada evento recibe
 algunos datos para ejecutar una operación cuando sea requerido, que se
-almacena en los campos y se usa en el método `execute` para
+almacenan en los campos y se usan en el método `execute` para
 ejecutar la funcionalidad correspondiente.
 
 #### Evento "New Junction"
@@ -1067,7 +1076,7 @@ no existe en el mapa de carreteras.
 La clase del simulador es la única responsable de ejecutar la
 simulación. Se implementa en la clase `TrafficSimulator`
 dentro del paquete `simulator.model`. Esta clase tiene al
-menos los siguientes atributos que no pueden ser públicos:
+menos los siguientes atributos, que no pueden ser públicos:
 
 -   *mapa de carreteras* (de tipo `RoadMap`): un mapa de
     carreteras en el cual se almacenan todos los objetos de la
@@ -1093,7 +1102,7 @@ modificadores de visibilidad como se describen a continuación):
     eventos tiene que estar ordenada como se describió anteriormente.
 
 -   `public void advance()`: avanza el estado de la
-    simulación de la siguiente forma (**el orden de los puntos que
+    simulación de la siguiente forma (**¡el orden de los puntos que
     aparecen a continuación es muy importante!**):
 
     1.  incrementa el tiempo de la simulación en 1.
@@ -1349,7 +1358,7 @@ la factorı́a correspondiente de la siguiente forma:
     dqbs.add( new MoveAllStrategyBuilder() );
     Factory<DequeuingStrategy> dqsFactory = new BuilderBasedFactory<>(dqbs);
 
-#### Eventos "Factory"
+#### Factoría de eventos
 
 Para esta factorı́a necesitamos un "builder" para cada clase de evento
 utilizado en la práctica, definidos en la sección
