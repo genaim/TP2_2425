@@ -1112,23 +1112,24 @@ duplication of code. Next, we describe how to develop all factories step
 by step. All classes and interfaces should be placed in the package
 `simulator.factories`.
 
+#### The interface `Factroy<T>`
+
 We will model a factory by a generic interface
 `Factory<T>`:
 
-    package simulator.factories;
-
     public interface Factory<T> {
-      public T createInstance(JSONObject info);
-    }      
+      public T create_instance(JSONObject info);
+      public List<JSONObject> get_info();
+    }
 
-Method `createInstance` receives `JSON` structure
+Method `create_instance` receives `JSON` structure
 describing the object to be created, and returns an instance of a
 corresponding class --- an instance of a sub-type of `T`.
 If it does not recognize what is described in `info`, it
 should throw a corresponding exception.
 
 For our purposes, we require the `JSON` structure that is passed to
-`createInstance` to includes two keys:
+`create_instance` to includes two keys:
 
 -   *type*, which is a string describing the type of the object to be
     created;
@@ -1137,91 +1138,134 @@ For our purposes, we require the `JSON` structure that is passed to
     needed to create the instance, e.g., what is passed to the
     corresponding constructor.
 
+The method `get_info` returns a list of `JSON` objectos describing 
+what can be created by the factory -- see details below. This method is
+mainly used in the second assignment.
+
 There are many ways to define a factory, we will see some during the
 course. For our purposes, we will use what we call a *builder based
 factory*, which allows extending a factory with more options without
 actually modifying its code.
+
+#### The class `Builder<T>`
 
 The basic element in a *builder based factory* is the *builder*, which
 is a class that can handle one case of those provided by the factory,
 i.e., create an instance of a specific type. We can model it as a
 generic class `Builder<T>`:
 
-    package simulator.factories;
-      
     public abstract class Builder<T> {
-      protected String _type;
-
-      public Builder(String type) {
-        if ( type == null )
-          throw new IllegalArgumentException("Invalid type: "+type);
-        else
-          _type = type;
-      }
-      
-      public T createInstance(JSONObject info) {
-
-        T b = null;
-        
-        if (_type != null && _type.equals(info.getString("type"))) {
-          b = createTheInstance(
-                 info.has("data") ? info.getJSONObject("data") : new JSONObject());
-        }
-        
-        return b;
+      private String _type_tag;
+      private String _desc;
+ 
+      public Builder(String type_tag, String desc) {
+        if (type_tag == null || desc == null || type_tag.isBlank() || desc.isBlank())
+          throw new IllegalArgumentException("Invalid type/desc");
+	  
+        _type_tag = type_tag;
+       _desc = desc;
       }
 
-      protected abstract T createTheInstance(JSONObject data);
-    }
+      public String get_type_tag() {
+        return _type_tag;
+      }
+ 
+      public JSONObject get_info() {
+        JSONObject info = new JSONObject();
+        info.put("type", _type_tag);
+        info.put("desc", _desc);
+        JSONObject data = new JSONObject();
+        fill_in_data(data);
+        info.put("data", data);
+        return info;
+      }
 
-As can be seen, its method `createInstance` receives a
-`JSON` object, and if it has key `type` whose value is equal to the
-field `_type`, it calls the abstract method
-`createTheInstance` with the value of key `data` to
-create the actual object, otherwise it returns `null` to
-indicate the it does not recognize this `JSON` structure. Classes that
-extend `Builder<T>` are responsible on assigning value to
-`_type` by calling the constructor of class
-`Builder`, and also on defining method
-`createTheInstance` to create the instance. Later we will
-describe several builders that we need, but let us first describe how
-these builders can be used to create a factory.
-
-A *builder based factory* is class that has a list of builders, and when
-asked to create an object from a corresponding `JSON` structure it
-traverses all builders until it finds one the can create the instance:
-
-    package simulator.factories;
-
-    public class BuilderBasedFactory<T> implements Factory<T> {
-      
-      private List<Builder<T>> _builders;
-
-      BuilderBasedFactory(List<Builder<T>> builders) {
-        _builders = new ArrayList<>(builders);
+      protected void fill_in_data(JSONObject o) {
       }
 
       @Override
-      public T createInstance(JSONObject info) {
-        if (info != null) {
-          for (Builder<T> bb : _builders) {
-            T o = bb.createInstance(info);
-            if (o != null) return o;
-          }
-        }
-        
-        throw new IllegalArgumentException("Invalid value for createInstance: "+info);
-      }  
+      public String toString() {
+        return _desc;
+      }
+
+      protected abstract T create_instance(JSONObject data);
     }
 
-Note that the list of builders is received as a parameter by the
-constructor, which means we can extend the factory by adding more
-builders to this list.
+The `_type_tag` attribute matches the `type` field of the
+corresponding `JSON` structure, and the `_desc` attribute describes what
+kind of objects can be created by this builder (for display to the
+user). Subclasses have to override `fill_in_data` to fill the
+parameters in `o` if necessary.
 
-Next, we describe three factories that we need in this assignment.
-Builders should return `null` (or throw corresponding
-exceptions) if some data is missing in the `JSON` structure or some keys
-have invalid values.
+Classes extending `Builder<T>` are responsible for assigning values
+to `_type_tag` and `_desc` by calling the constructor of the `Builder` class, and
+also for defining the `create_instance` method to create an object of
+type `T` (or any instance that is a subclass of `T`) in case all
+necessary information is available in data. Otherwise it generates an
+`IllegalArgumentException` describing that information is incorrect or
+not available.
+
+The `get_info` method returns a `JSON` object  which will be used by the
+`get_info()` method of the factory. It include  two fields
+corresponding to `_type_tag` and `_desc`, and a section `data` with the information
+required by the corresponding builder. If we want to add more information
+we have to overwrite `fill_in_data` to fill it.  We will use this
+method in the second assignment, so you can leave the implementation of
+`fill_in_data` in the subclasses for later.
+
+#### The class `BuilderBasedFactory<T>`
+
+Once the builders are ready, we implement a generic builder based factory. It is a 
+class that has a map of builders, so that when we want to create an object from a 
+`JSON` structure, it finds the builder with which to generate the corresponding instance:
+
+    public class BuilderBasedFactory<T> implements Factory<T> {
+      private Map<String, Builder<T>> _builders;
+
+
+      public BuilderBasedFactory() {
+        // Create a HashMap for _builders, and a LinkedList _builders_info
+        // ...
+      }
+
+      public BuilderBasedFactory(List<Builder<T>> builders) {
+        this();
+
+        // call add_builder(b) for each builder b in builder
+        // ...
+      }
+
+      public void add_builder(Builder<T> b) {
+        // add an entry “b.getTag() |−> b” to _builders. 
+        // ...
+        // add b.get_info() to _buildersInfo
+        // ...
+      }
+
+      @Override
+      public T create_instance(JSONObject info) {
+        if (info == null) {
+          throw new IllegalArgumentException("’info’ cannot be null");
+        }
+
+        // Look for a builder with a tag equals to info.getString("type"), in the
+        //  map _builder, and call its create_instance method and return the result 
+        // if it is not null. The value you pass to create_instance is the following
+        // because ‘data’ is optional: 
+        //
+        //   info.has("data") ? info.getJSONObject("data") : new getJSONObject()
+        // ...
+
+        // If no builder is found or the result is null ...
+        throw new IllegalArgumentException("Unrecognized ‘info’:" + info.toString());
+      }
+
+      @Override
+      public List<JSONObject> get_info() {
+        return Collections.unmodifiableList(_builders_info);
+      }
+    }
+
 
 #### Light Switching Strategies Factory
 
