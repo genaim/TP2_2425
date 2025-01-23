@@ -1258,8 +1258,8 @@ El método `get_info` devuelve un objeto `JSON` con dos campos
 correspondientes a `_type_tag` y `_desc`, el cual será utilizado por
 el método `get_info()` de la factoría. Si queremos añadir más
 información tenemos que sobreescribir `fill_in_data` para rellenarla.
-Utilizaremos este método en la segunda práctica, así que podéis dejarlo
-para más adelante.
+Utilizaremos este método en la segunda práctica, así que podéis dejar
+las implemenetación de `fill_in_data` en las subclases para más adelante.
 
 #### La Clase `BuilderBasedFactory<T>`
 
