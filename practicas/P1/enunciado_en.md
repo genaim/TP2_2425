@@ -898,32 +898,40 @@ We first define an abstract base-class `Event` (in package
 `simulator.model` to model an event:
 
     package simulator.model;
-      
+
     public abstract class Event implements Comparable<Event> {
 
+      private static long _counter = 0;
+
       protected int _time;
+      protected long _time_stamp;
 
       Event(int time) {
         if ( time < 1 )
           throw new IllegalArgumentException("Invalid time: "+time);
-        else
+        else {
           _time = time;
+          _time_stamp = _counter++;
+        }
       }
 
       int getTime() {
         return _time;
       }
-      
+
       @Override
       public int compareTo(Event o) {
-        // TODO complete the method to compare events according to their _time
+        // TODO complete the method to compare events according to their _time, and when
+	// _time is equal it compares the _time_stamp;
       }
-      
+
       abstract void execute(RoadMap map);
     }
 
 Field `_time` is the time at which this event should be
-executed, and method `execute` is the one called by the
+executed, field `_time_stamp` is used to check which event was 
+created first when is equal `_time`,
+and method `execute` is the one called by the
 simulator to execute the event. The functionality of this method is
 defined in subclasses.
 
@@ -1035,12 +1043,11 @@ forbidden to declare fields as `public`):
 -   *road-map* of type (of type `RoadMap`): a road-map in
     which all simulated objects are stored.
 
--   *list of events* (of type `List<Event>`): a list of
-    events to be executed, the list is sorted by the time of the events.
-    If two events have the same time, the one that was added first goes
-    before in the list -- to guarantee this use the class
-    `SortedArrayList` that was explained in class, and is
-    provided in package `simulator.misc`.
+-   *a priorty queue of events* (of type `Queue<Event>`): a  queue of
+    events to be executed. The priority is determined by the time 
+    of the events, and if the time is equal the one that was added first
+    is polled first -- this is done by `compareTo` of the class `Event`.
+    Use `PriorityQueue<Event>` to instanciate this attribute.
 
 -   *simulation time* (of type `int`): the simulation time,
     initialized to 0.
