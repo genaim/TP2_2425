@@ -952,13 +952,18 @@ la cola de eventos. Primero vamos a definir una clase abstracta
 
     public abstract class Event implements Comparable<Event> {
 
+      private static long _counter = 0;
+
       protected int _time;
+      protected long _time_stamp;
 
       Event(int time) {
         if ( time < 1 )
           throw new IllegalArgumentException("Invalid time: "+time);
-        else
+        else {
           _time = time;
+          _time_stamp = _counter++;
+        }
       }
 
       int getTime() {
@@ -967,14 +972,17 @@ la cola de eventos. Primero vamos a definir una clase abstracta
 
       @Override
       public int compareTo(Event o) {
-        // TODO complete the method to compare events according to their _time
+        // TODO complete the method to compare events according to their _time, and when
+	// _time is equal it compares the _time_stamp;
       }
 
       abstract void execute(RoadMap map);
     }
 
 El campo `_time` es el tiempo (o paso) en el cual este
-evento tiene que ser ejecutado, y el método `execute` es el
+evento tiene que ser ejecutado, el campo `_time_stamp` se
+usará para saber que evento se ha creado antes cuando su campo
+`_time` es igual, y el método `execute` es el
 método al que el simulador llama para ejecutar el evento. La
 funcionalidad de este método se define en las subclases.
 
