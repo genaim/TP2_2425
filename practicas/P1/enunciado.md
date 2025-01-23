@@ -1155,122 +1155,166 @@ en la sección [*Controlador*](#controller) describiremos el controlador,
 que es la clase que permite cargar eventos desde un `InputStream` y
 ejecutar el simulador un número concreto de pasos.
 
-### Factorı́as
+### Factorías
 
-Como tenemos varias factorı́as, vamos a utilizar genéricos de Java para
-evitar la duplicación de código. Pasamos ahora a mostrar cómo
-implementar las factorı́as paso a paso. Todas las clases e interfaces
-deben colocarse dentro del paquete `simulator.factories`.
-Modelamos una factorı́a a través de una interfaz genérica
-`Factory<T>`:
+Todas las clases/interfaces de este apartado tienen que ir en el
+paquete `simulator.factories`.
 
-    package simulator.factories;
+Como en la práctica tenemos varías factorías vamos a usar genéricos
+para evitar duplicar código. A continuación detallamos cómo
+implementarlas paso a paso.
+
+#### La Interfaz `Factory<T>`
+
+Una factoría se modela con la interfaz genérica Factory<T>:
 
     public interface Factory<T> {
-      public T createInstance(JSONObject info);
+      public T create_instance(JSONObject info);
+      public List<JSONObject> get_info();
     }
 
-El método `createInstance` recibe como parámetro una
-estructura `JSON` que describe el objeto a crear, y devuelve una
-instancia de la clase correspondiente -- una instancia de un subtipo de
-`T`. Si no reconoce la información contenida en
-`info`, debe lanzar una excepción.
+El método `createInstance` recibe una estructura `JSON` que describe el
+objeto a crear, y devuelve una instancia de la clase correspondiente —
+una instancia de un subtipo de `T`. En caso de que info sea incorrecto,
+entonces lanza la excepción correspondiente. En nuestro caso, la
+estructura `JSON` que se pasa como parámetro al método createInstance
+incluye dos claves:
 
-Para nuestros propósitos, necesitamos que la estructura `JSON` que se
-pasa como parámetro a `createInstance`, contenga dos
-claves:
+  * `type`: es un string que describe el objeto que se va a crear;
+  * `data`: que es una estructura `JSON` que incluye toda la información
+    necesaria para crear el objeto, por ejemplo, los argumentos
+     necesarios en el correspondiente constructor de la clase, etc.
 
--   *type*, que es un string que describe el tipo del objeto que se va a
-    crear; y
+El método `get_info` devuelve una lista de objetos `JSON` que describen
+qué puede ser creado por la factoria, ver detalles a continuación. Este
+método lo vamos a usar en la segunda práctica.
 
--   *data*, que es una estructura `JSON` que incluye toda la información
-    necesaria para crear la instancia. Por ejemplo lo que hay que pasar
-    a la constructora correspondiente.
+Existen muchas formas de definir una factoría, que veremos durante el
+curso (o en la asignatura Ingeniería de Software). Nosotros la vamos a
+diseñar utilizando lo que se conoce como builder based factory, que
+permite extender una factoría con más opciones sin necesidad de
+modificar su código. Es una combinación de los patrones de diseño
+Command y Factory.
 
-Existen muchas formas de definir una factorı́a. Para nuestra aplicación,
-utilizaremos lo que se conoce como *builder based factory*, que permite
-extender una factorı́a con más opciones sin necesidad de modificar su
-código. El elemento básico en una *builder based factory* es el
-*builder*, que es una clase capaz de crear una instancia de un tipo
-especı́fico. Podemos modelarla como una clase genérica
-`Builder<T>`:
+#### La Clase `Builder<T>`
 
-    package simulator.factories;
+El elemento básico en una builder based factory es el builder, que es
+una clase capaz de crear una instancia de un tipo específico. Podemos
+modelarla como una clase genérica `Builder<T>`:
 
     public abstract class Builder<T> {
-      protected String _type;
-
-      public Builder(String type) {
-        if ( type == null )
-          throw new IllegalArgumentException("Invalid type: "+type);
-        else
-          _type = type;
+      private String _type_tag;
+      private String _desc;
+ 
+      public Builder(String type_tag, String desc) {
+        if (type_tag == null || desc == null || type_tag.isBlank() || desc.isBlank())
+          throw new IllegalArgumentException("Invalid type/desc");
+	  
+        _type_tag = type_tag;
+       _desc = desc;
       }
 
-      public T createInstance(JSONObject info) {
-
-        T b = null;
-
-        if (_type != null && _type.equals(info.getString("type"))) {
-          b = createTheInstance(
-                 info.has("data") ? info.getJSONObject("data") : new JSONObject());
-        }
-
-        return b;
+      public String get_type_tag() {
+        return _type_tag;
+      }
+ 
+      public JSONObject get_info() {
+        JSONObject info = new JSONObject();
+        info.put("type", _type_tag);
+        info.put("desc", _desc);
+        JSONObject data = new JSONObject();
+        fill_in_data(data);
+        info.put("data", data);
+        return info;
       }
 
-      protected abstract T createTheInstance(JSONObject data);
-    }
-
-Como se puede observar, su método `createInstance` recibe
-un objeto `JSON`, y si tiene clave `type` cuyo valor es igual al campo
-`_type`, llama al método abstracto
-`createTheInstance` con el valor de la clave `data` para
-crear el objeto actual. En otro caso devuelve `null` para
-indicar que es incapaz de reconocer la estructura `JSON`. Las clases que
-extienden a `Builder<T>` son las responsables de asignar
-un valor a `_type` llamando a la constructora de la clase
-`Builder`, y también de definir el método
-`createTheInstance` para crear la instancia. Más tarde
-veremos algunos "builders" que necesitamos, pero primero vamos a
-describir cómo se pueden usar estos "builders" para crear una factorı́a.
-
-Una *builder based factory* es una clase que tiene una lista de
-"builders", y cuando se le pide que cree un objeto a partir de una
-estructura `JSON`, recorre todos los builders hasta que encuentra uno
-que sea capaz de crearlo.
-
-    package simulator.factories;
-
-    public class BuilderBasedFactory<T> implements Factory<T> {
-
-      private List<Builder<T>> _builders;
-
-      BuilderBasedFactory(List<Builder<T>> builders) {
-        _builders = new ArrayList<>(builders);
+      protected void fill_in_data(JSONObject o) {
       }
 
       @Override
-      public T createInstance(JSONObject info) {
-        if (info != null) {
-          for (Builder<T> bb : _builders) {
-            T o = bb.createInstance(info);
-            if (o != null) return o;
-          }
-        }
-
-        throw new IllegalArgumentException("Invalid value for createInstance: "+info);
+      public String toString() {
+        return _desc;
       }
+
+      protected abstract T create_instance(JSONObject data);
     }
 
-Observa que la lista de "builders" se le pasa a la constructora por
-parámetro, lo que significa que podemos extender la factorı́a añadiendo
-más "builders" a la lista.
+El atributo `_type_tag` coincide con el campo `type` de la estructura
+JSON correspondiente, y el atributo `_desc` describe que tipo de objetos
+pueden ser creados por este builder (para mostrar al usuario). Las
+subclases tienen que sobreescribir `fill_in_data` para rellenar los
+parámetros en `o` si es necesario.
 
-A continuación describimos las tres factorı́as que necesitamos en esta
-práctica. Los "builders" deben devolver `null` (o lanzar la
-correspondiente excepción) si algún dato no aparece en la estructura
-`JSON` o bien hay alguna clave inválida.
+Las clases que extienden a `Builder<T>` son las responsables de
+asignar un valor a `_type_tag` llamando a la constructora de la clase
+`Builder`, y también de definir el método `createInstance` para crear
+un objeto del tipo `T` (o de cualquier instancia que sea subclase de
+`T`) en caso de que toda la información necesaria se encuente
+disponible en data. En otro caso genera una excepción de tipo
+`IllegalArgumentException` describiendo que información es incorrecta
+o no se encuentra disponible.
+
+El método `get_info` devuelve un objeto `JSON` con dos campos
+correspondientes a `_type_tag` y `_desc`, el cual será utilizado por
+el método `get_info()` de la factoría. Si queremos añadir más
+información tenemos que sobreescribir `fill_in_data` para rellenarla.
+Utilizaremos este método en la segunda práctica, así que podéis dejarlo
+para más adelante.
+
+#### La Clase `BuilderBasedFactory<T>`
+
+Una vez que los builders están preparados, implementamos una builder
+based factory genérica. Es una clase que tiene un mapa de builders, de
+tal forma que cuando queramos crear un objeto a partir de una
+estructura `JSON`, encuentra el builder con el que poder generar la
+instancia correspondiente:
+
+    public class BuilderBasedFactory<T> implements Factory<T> {
+      private Map<String, Builder<T>> _builders;
+
+
+      public BuilderBasedFactory() {
+        // Create a HashMap for _builders, and a LinkedList _builders_info
+        // ...
+      }
+
+      public BuilderBasedFactory(List<Builder<T>> builders) {
+        this();
+
+        // call add_builder(b) for each builder b in builder
+        // ...
+      }
+
+      public void add_builder(Builder<T> b) {
+        // add an entry “b.getTag() |−> b” to _builders. 
+        // ...
+        // add b.get_info() to _buildersInfo
+        // ...
+      }
+
+      @Override
+      public T create_instance(JSONObject info) {
+        if (info == null) {
+          throw new IllegalArgumentException("’info’ cannot be null");
+        }
+
+        // Look for a builder with a tag equals to info.getString("type"), in the
+        //  map _builder, and call its create_instance method and return the result 
+        // if it is not null. The value you pass to create_instance is the following
+        // because ‘data’ is optional: 
+        //
+        //   info.has("data") ? info.getJSONObject("data") : new getJSONObject()
+        // ...
+
+        // If no builder is found or the result is null ...
+        throw new IllegalArgumentException("Unrecognized ‘info’:" + info.toString());
+      }
+
+      @Override
+      public List<JSONObject> get_info() {
+        return Collections.unmodifiableList(_builders_info);
+      }
+    }
 
 #### Factorı́a para las estrategias de cambio de semáforo
 
@@ -1474,9 +1518,12 @@ La clase `SetContClassEventBuilder` crea una instancia de
       }
     }
 
+### Como Crear e Inicializar Las Factorías 
+
 Una vez implementadas las clases anteriores, podemos usarlas para crear
 la factorı́a correspondiente, utilizando el siguiente código:
 
+    // initialize the events factory
     List<Builder<Event>> ebs = new ArrayList<>();
     ebs.add( new NewJunctionEventBuilder(lssFactory,dqsFactory) );
     ebs.add( new NewCityRoadEventBuilder() );
