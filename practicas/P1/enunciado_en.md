@@ -1,5 +1,8 @@
 # Assignment 1: Traffic Simulator
 
+**Submision deadline**: 03/03/2025 at 08:30am.
+
+
 ## Copy detection
 
 For each of the TP2 assignments, all the submissions from all the
