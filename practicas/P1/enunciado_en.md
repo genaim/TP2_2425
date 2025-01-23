@@ -1464,6 +1464,8 @@ Builder `SetContClassEventBuilder` creates an instance of
       }
     }
 
+#### How to create and initialize the factories 
+
 Once the above builders are defined, we can use them to create a
 corresponding factory as follows:
 
