@@ -1151,11 +1151,11 @@ factorı́as para parsear estas estructuras y transformarlas en objetos de
 la simulación. En la
 sección [*Las Factorı́as*](#las-factorı́as) describimos las factorı́as necesarias para
 facilitar la creación de eventos a partir de las estructuras `JSON`; y
-en la sección [*El Controlador*](#el-controller) describiremos el controlador, 
+en la sección [*El Controlador*](#el-controlador) describiremos el controlador, 
 que es la clase que permite cargar eventos desde un `InputStream` y
 ejecutar el simulador un número concreto de pasos.
 
-### La Factorías
+### Las Factorías
 
 Todas las clases/interfaces de este apartado tienen que ir en el
 paquete `simulator.factories`.
