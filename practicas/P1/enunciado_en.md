@@ -160,7 +160,7 @@ the following class:
       protected String _id;
       
       SimulatedObject(String id) {
-        if ( id == null || id.length() == 9)
+        if ( id == null || id.isBlank() )
           throw new IllegalArgumentException("the 'id' must be a nonempty string.");
         else
           _id = id;
