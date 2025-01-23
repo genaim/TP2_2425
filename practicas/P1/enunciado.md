@@ -25,9 +25,9 @@ Las siguientes instrucciones **son estrictas**, es decir, debes seguirlas obliga
 
 1. Lee el enunciado completo de la práctica antes de empezar.
 2. Crea un proyecto Java vacío en Eclipse (usa como mínimo `JDK17`). 
-3. Descarga `lib.zip`, descomprímelo en la raíz del proyecto (al mismo nivel de `src`) y añade las librerías al proyecto. Para ello elige `Project -> Properties -> BuildPath -> Libraries`, marca `ClassPath`, pulsa el botón `Add Jars` y selecciona la librería que quieres añadir.
-4. Descarga `resources.zip` y descomprimelo en la raíz del proyecto (al mismo nivel de `src`).
-5. Descarga `src.zip` y reemplaza el directorio `src` del proyecto por este `src` (o copia el contenido).
+3. Descarga [lib.zip](./lib.zip), descomprímelo en la raíz del proyecto (al mismo nivel de `src`) y añade las librerías al proyecto. Para ello elige `Project -> Properties -> BuildPath -> Libraries`, marca `ClassPath`, pulsa el botón `Add Jars` y selecciona la librería que quieres añadir.
+4. Descarga [resources.zip](./resources.zip) y descomprimelo en la raíz del proyecto (al mismo nivel de `src`).
+5. Descarga [src.zip](./src.zip) y reemplaza el directorio `src` del proyecto por este `src` (o copia el contenido).
 6. Es muy importante que cada miembro del grupo haga los puntos 2-5, porque en el examen tendrás que hacerlo usando el `src.zip` de tu práctica (no vas a usar un proyecto ya montado).
 7. Es necesario usar exactamente la misma estructura de paquetes y los mismos nombres de clases que aparecen en el enunciado.
 8. Debes formatear todo el código usando la funcionalidad de Eclipse (`Source->Format`).
