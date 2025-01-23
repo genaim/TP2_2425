@@ -1242,13 +1242,13 @@ modelarla como una clase genérica `Builder<T>`:
     }
 
 El atributo `_type_tag` coincide con el campo `type` de la estructura
-JSON correspondiente, y el atributo `_desc` describe que tipo de objetos
+`JSON` correspondiente, y el atributo `_desc` describe que tipo de objetos
 pueden ser creados por este builder (para mostrar al usuario). Las
 subclases tienen que sobreescribir `fill_in_data` para rellenar los
 parámetros en `o` si es necesario.
 
 Las clases que extienden a `Builder<T>` son las responsables de
-asignar un valor a `_type_tag` llamando a la constructora de la clase
+asignar valores a `_type_tag` y `_desc` llamando a la constructora de la clase
 `Builder`, y también de definir el método `create_instance` para crear
 un objeto del tipo `T` (o de cualquier instancia que sea subclase de
 `T`) en caso de que toda la información necesaria se encuente
