@@ -1179,7 +1179,7 @@ El método `create_instance` recibe una estructura `JSON` que describe el
 objeto a crear, y devuelve una instancia de la clase correspondiente —
 una instancia de un subtipo de `T`. En caso de que info sea incorrecto,
 entonces lanza la excepción correspondiente. En nuestro caso, la
-estructura `JSON` que se pasa como parámetro al método createInstance
+estructura `JSON` que se pasa como parámetro al método create_instance
 incluye dos claves:
 
   * `type`: es un string que describe el objeto que se va a crear;
@@ -1249,7 +1249,7 @@ parámetros en `o` si es necesario.
 
 Las clases que extienden a `Builder<T>` son las responsables de
 asignar un valor a `_type_tag` llamando a la constructora de la clase
-`Builder`, y también de definir el método `createInstance` para crear
+`Builder`, y también de definir el método `create_instance` para crear
 un objeto del tipo `T` (o de cualquier instancia que sea subclase de
 `T`) en caso de que toda la información necesaria se encuente
 disponible en data. En otro caso genera una excepción de tipo
