@@ -1092,11 +1092,12 @@ menos los siguientes atributos, que no pueden ser públicos:
     carreteras en el cual se almacenan todos los objetos de la
     simulación.
 
--   *cola de prioridad de eventos* (de tipo `Queue<Event>`): una lista
+-   *cola de prioridades de eventos* (de tipo `Queue<Event>`): una cola
     de eventos a ejecutar. La prioridad es por el tiempo de los
     eventos, y si dos eventos tienen el mismo tiempo, el que fue añadido
     antes sale antes -- esta funcionalidad hay que implementarla
-    en el método `compareTo` de la clase `Event`. Usar la clase `PriorityQueue<Event>`.
+    en el método `compareTo` de la clase `Event`. Usar la clase
+    `PriorityQueue<Event>` para instanciar este atributo.
 
 -   *tiempo (paso) de la simulación* (de tipo `int`): el
     paso de la simulación, que inicialmente será 0.
