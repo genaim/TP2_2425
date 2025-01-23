@@ -1518,7 +1518,7 @@ La clase `SetContClassEventBuilder` crea una instancia de
       }
     }
 
-### Como Crear e Inicializar Las Factorías 
+#### Cómo Crear e Inicializar Las Factorías 
 
 Una vez implementadas las clases anteriores, podemos usarlas para crear
 la factorı́a correspondiente, utilizando el siguiente código:
