@@ -1092,12 +1092,11 @@ menos los siguientes atributos, que no pueden ser públicos:
     carreteras en el cual se almacenan todos los objetos de la
     simulación.
 
--   *lista de eventos* (de tipo `List<Event>`): una lista
-    de eventos a ejecutar. La lista está ordenada por el tiempo de los
-    eventos. Si dos eventos tienen el mismo tiempo, el que fue añadido
-    antes irá el primero en la lista -- para garantizar este uso, la
-    clase `SortedArrayList` se explicará en clase, y se
-    adjuntará su código en el paquete `simulator.misc`.
+-   *cola de prioridad de eventos* (de tipo `Queue<Event>`): una lista
+    de eventos a ejecutar. La prioridad es por el tiempo de los
+    eventos, y si dos eventos tienen el mismo tiempo, el que fue añadido
+    antes sale antes -- esta funcionalidad hay que implementarla
+    en el método `compareTo` de la clase `Event`. Usar la clase `PriorityQueue<Event>`.
 
 -   *tiempo (paso) de la simulación* (de tipo `int`): el
     paso de la simulación, que inicialmente será 0.
