@@ -1175,7 +1175,7 @@ Una factoría se modela con la interfaz genérica Factory<T>:
       public List<JSONObject> get_info();
     }
 
-El método `createInstance` recibe una estructura `JSON` que describe el
+El método `create_instance` recibe una estructura `JSON` que describe el
 objeto a crear, y devuelve una instancia de la clase correspondiente —
 una instancia de un subtipo de `T`. En caso de que info sea incorrecto,
 entonces lanza la excepción correspondiente. En nuestro caso, la
