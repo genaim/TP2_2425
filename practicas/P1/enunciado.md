@@ -163,7 +163,7 @@ indirectamente) a la siguiente clase:
       protected String _id;
 
       SimulatedObject(String id) {
-        if ( id == null || id.isEmpty())
+        if ( id == null || id.isBlank() )
           throw new IllegalArgumentException("the 'id' must be a nonempty string.");
         else
           _id = id;
