@@ -1149,13 +1149,13 @@ determinado de pasos.
 Vamos a usar estructuras `JSON` para describir eventos, y utilizaremos
 factorı́as para parsear estas estructuras y transformarlas en objetos de
 la simulación. En la
-sección [*Factorı́as*](#factorı́as) describimos las factorı́as necesarias para
+sección [*Las Factorı́as*](#las-factorı́as) describimos las factorı́as necesarias para
 facilitar la creación de eventos a partir de las estructuras `JSON`; y
-en la sección [*Controlador*](#controller) describiremos el controlador, 
+en la sección [*El Controlador*](#el-controller) describiremos el controlador, 
 que es la clase que permite cargar eventos desde un `InputStream` y
 ejecutar el simulador un número concreto de pasos.
 
-### Factorías
+### La Factorías
 
 Todas las clases/interfaces de este apartado tienen que ir en el
 paquete `simulator.factories`.
