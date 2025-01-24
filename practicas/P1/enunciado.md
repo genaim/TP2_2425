@@ -1636,6 +1636,11 @@ añadir código para procesar la opción `-t` (estudiando como
 se ha hecho para otras opciones). Observa que es un argumento opcional,
 que en caso de no ser proporcionado, tendrá como valor 10.
 
+## Pruebas unitarias
+
+El archivo [test.zip](./test.zip) incluye pruebas de JUnit que tu código debe pasar.
+
+
 ## Otros comentarios
 
 -   El directorio `resources/examples` incluye un conjunto
