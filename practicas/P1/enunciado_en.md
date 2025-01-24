@@ -1587,7 +1587,8 @@ provided in the command-line then its value should be 10.
 
 ## JUnit tests 
 
-The [test.zip](./test.zip) file includes JUNIT tests that your code must pass.
+The [tests.zip](./tests.zip) file includes JUNIT tests that your code 
+must pass. **It is not allowed to modify the tests**.
 
 ## Other Comments 
 
