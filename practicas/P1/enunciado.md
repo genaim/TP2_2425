@@ -1638,7 +1638,7 @@ que en caso de no ser proporcionado, tendrá como valor 10.
 
 ## Pruebas unitarias
 
-El archivo [test.zip](./test.zip) incluye pruebas de JUnit que tu código debe pasar.
+El archivo [tests.zip](./tests.zip) incluye pruebas de JUnit que tu código debe pasar.
 **No está permitido modificar las pruebas**.
 
 ## Otros comentarios
