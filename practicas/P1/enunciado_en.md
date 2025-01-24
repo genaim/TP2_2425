@@ -1585,6 +1585,10 @@ option `-t` (by studying how it is done already for other
 options). Note that it is an optional argument, i.e., if it is not
 provided in the command-line then its value should be 10.
 
+## JUnit tests 
+
+The [test.zip](./test.zip) file includes JUNIT tests that your code must pass.
+
 ## Other Comments 
 
 -   Directory `resources/examples` includes a set of
