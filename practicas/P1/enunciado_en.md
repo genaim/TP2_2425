@@ -1614,7 +1614,7 @@ must pass. **It is not allowed to modify the tests**.
     `p.println("...")`, `p.print("...")`,
     etc.
 
--   To convert a `JSONObject` `jo` to a `String] use `jo.toString() or
+-   To convert a `JSONObject` `jo` to a `String use `jo.toString() or
     `jo.toString(3)`. The first is compact, it does not print
     white-spaces. The second pretty-prints the `JSON` structure, where
     the argument is the number of spaces to add to each level of
