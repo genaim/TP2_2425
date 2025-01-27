@@ -1,6 +1,6 @@
 # Práctica 1: Simulador de Tráfico
 
-**Fecha de entrega**: 03 de Marzo 2025, 08:30h
+**Fecha de entrega**: 03 de Marzo de 2025, 08:30h
 
 ## Detección de copias
 
