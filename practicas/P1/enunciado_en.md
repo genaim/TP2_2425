@@ -26,7 +26,7 @@ The following instructions **are strict**, i.e. you must follow them.
 
 1. Read the complete assigment statement before you start.
 2. Create an empty Java project in Eclipse (use at least `JDK17`). 
-3. Download [lib.zip](./lib.zip) and unzip it to the root of the project (at the same level as `src`), and add the libraries to the project (Choose `Project -> Properties -> BuildPath -> Libraries`, check `ClassPath`, press the `Add Jars` button and select the library you want to add).
+3. Download [lib.zip](./lib.zip) and unzip it to the root of the project (at the same level as `src`), and add the libraries to the project (Choose `Project -> Properties -> BuildPath -> Libraries`, check `ClassPath`, press the `Add External Jars` button and select the library you want to add).
 4. Download [resources.zip](./resources.zip) and unzip it to the root of the project (at the same level as `src`).
 5. Download [src.zip](./src.zip) and replace the `src` directory of the project with this `src` (or copy the contents).
 6. It is very important that each member of the group does points 2-5, because in the exam you will have to do it using the `src.zip` of your assignment (you are not going to use an already assembled project).
