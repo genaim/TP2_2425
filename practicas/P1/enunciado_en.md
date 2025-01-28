@@ -233,7 +233,6 @@ constructor:
 In this constructor, you should check that the arguments have valid
 values and throw corresponding exceptions otherwise:
 
-::: inparaenum
 `id` is nonempty string;
 
 `maxSpeed` should be positive;
@@ -242,7 +241,6 @@ values and throw corresponding exceptions otherwise:
 inclusive);
 
 the length of the list `itinerary` should be at least 2.
-:::
 
 Besides, do not store list `itinerary` as it is received by
 the construction, but rather copy it into a new *read-only* list (to
@@ -539,13 +537,12 @@ time, exactly one incoming road can have a *green* light.
 
 There are several kinds of junctions, and they can be different in
 
-::: inparaenum
-how they decide which incoming road gets a green light;
+ * how they decide which incoming road gets a green light;
 
-how they remove vehicles from the queue of the road with green lights,
+ * how they remove vehicles from the queue of the road with green lights,
 i.e., which vehicles from the queue move to their next road in each
 simulation step.
-:::
+
 
 We will not use inheritance to define junctions, but rather we will use
 composition which can be seen as composing an object with an algorithm
