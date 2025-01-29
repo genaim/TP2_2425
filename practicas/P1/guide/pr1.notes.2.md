@@ -33,7 +33,7 @@ The maps are used for fast access to the objects.
     * Returns an unmodifiable view of the corresponding list of simulated objects (e.g., using `Collections.unmodifiableList(_vehicles)`).
 
 * `report()`:
-    * Returns a JSON structure as explained in the PDF.
+    * Returns a JSON structure as explained in the assignment statement.
 
 **Testing**
 
