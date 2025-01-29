@@ -108,7 +108,7 @@ There are two strategies:
 
 **report() method**
 
-In all simulated objects, the `report()` method should return a JSON representation as specified in the PDF. 
+In all simulated objects, the `report()` method should return a JSON representation as specified in the assignment statement. 
 
 
 **Testing**
