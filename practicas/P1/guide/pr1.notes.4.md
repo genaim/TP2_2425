@@ -34,7 +34,7 @@ For the `_events` queue, use a `PriorityQueue` so that you can extract events in
     * Calls the `advance()` method of all junctions in the `_roadMap`, and then calls the `advance()` method of all roads in the `_roadMap`. The order is important: junctions must be advanced before roads. The `advance()` method of vehicles is not called directly here; it will be called by the corresponding roads.
 
 * `report()`:
-    * Creates a JSON object as explained in the PDF. You should use the `_roadMap.report()` method to generate the JSON for the roadmap.
+    * Creates a JSON object as explained in the assignment statement. You should use the `_roadMap.report()` method to generate the JSON for the roadmap.
 
 **Testing**
 
