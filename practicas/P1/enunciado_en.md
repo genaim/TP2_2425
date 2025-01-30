@@ -270,7 +270,7 @@ package protected):
         current road;
 
     (b) calculate the contamination produced as `c=l*f` where `f` is the
-        contamination factor and `l` is the distance traveled in this
+        contamination class and `l` is the distance traveled in this
         simulation step, i.e., the new location minus the previous
         location, and then add `c` to the vehicle's *total
         contamination* and also to the current road contamination by
