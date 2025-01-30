@@ -55,6 +55,7 @@ public NewVehicleEvent(int time, String id, int maxSpeed, int contClass, List<St
     1. Create an itinerary as a `List<Junction>` from the itinerary provided to the constructor as a `List<String>`. Use the `map` to translate each junction ID to its corresponding `Junction` object.
     2. Create an instance `v` of `Vehicle` using the itinerary and other information passed to the constructor.
     3. Add `v` to the `map`.
+    4. Ask `v` to move to the next road (it will then enter the first roal, and change its status from `PENDING` to `TRAVELLING`).
 
 **Other New... Events**
 
