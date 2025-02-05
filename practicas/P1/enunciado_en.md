@@ -478,6 +478,8 @@ additional setters as far as they are *private*.
 
 Next, we describe the two kinds of roads that should be implemented.
 
+##### Inter-City Road
+
 This kind of road is used to connects cities, and is implemented by a
 class called `InterCityRoad` that extends
 `Road` and placed in the package
@@ -501,6 +503,8 @@ class called `InterCityRoad` that extends
     a vehicle as to the speed limit of the road but reduced by 20%
     (i.e., `(speedLimit*8)/10`) in case of a
     `STORM`.
+
+##### City Road
 
 This kind of road models roads inside cities, and is implemented by a
 class called `CityRoad` that extends `Road`
