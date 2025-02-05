@@ -448,8 +448,6 @@ protected):
 vehicle’s advance method. Recall sorting the list of vehicles by location at the
 end.
 
-        Recall sorting the list of vehicles by location at the end.
-
 -   `public JSONObject report()`: returns the road's state
     in the following `JSON` format:
 
