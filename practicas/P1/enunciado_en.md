@@ -183,7 +183,7 @@ the following class:
 
 In this assignment, we will have only one kind of vehicle, represented
 by a class called `Vehicle` that extends
-`SimulatedObject` and placed package
+`SimulatedObject` and placed in the package
 `simulator.model`.
 
 Class `Vehicle` maintains (at least) the following
@@ -233,14 +233,14 @@ constructor:
 In this constructor, you should check that the arguments have valid
 values and throw corresponding exceptions otherwise:
 
-`id` is nonempty string;
+* `id` is nonempty string;
 
-`maxSpeed` should be positive;
+* `maxSpeed` should be positive;
 
-`contClass` should be between 0 and 10 (both
+* `contClass` should be between 0 and 10 (both
 inclusive);
 
-the length of the list `itinerary` should be at least 2.
+* the length of the list `itinerary` should be at least 2.
 
 Besides, do not store list `itinerary` as it is received by
 the construction, but rather copy it into a new *read-only* list (to
@@ -279,8 +279,8 @@ package protected):
     (c) if the current location (i.e., the new one) equals to the road
         length, the vehicle enters the queue of the corresponding
         junction (by calling the corresponding method of class
-        `Junction`). Remember to modify the vehicle's
-        status.
+        `Junction`) -- the vehicle remains on the road. Remember to modify the vehicle's
+        status. 
 
 -   `void moveToNextRoad()`: moves the vehicle to the next
     road. This is done by *exiting* the current road and *entering* the
@@ -437,16 +437,20 @@ protected):
 -   `void advance(int time)`: advances the state of the
     road as follows:
 
-    (1) calls `reduceTotalContamination` to reduce the
+    1. calls `reduceTotalContamination` to reduce the
         total contamination, i.e., some CO<sub>2</sub> vanish.
 
-    (2) calls `updateSpeedLimit` to set the speed limit for
+    2. calls `updateSpeedLimit` to set the speed limit for
         the current simulation step.
 
-    (3) traverses the list of vehicles (from first to last), and for
-        each vehicle: (a) set the vehicle’s speed to the value returned by calculateVehicleSpeed; (b) calls the
-vehicle’s advance method. Recall sorting the list of vehicles by location at the
-end.
+    3. traverses the list of vehicles (from first to last), and for
+        each vehicle:
+
+       a. set the vehicle’s speed to the value returned by `calculateVehicleSpeed`;
+
+       b. calls the vehicle’s advance method.
+
+    Recall sorting the list of vehicles by location at the end beaucse they might overtake each other.
 
 -   `public JSONObject report()`: returns the road's state
     in the following `JSON` format:
@@ -495,7 +499,7 @@ class called `InterCityRoad` that extends
     weather, and 20 in case of a `STORM`.
 
 -   method `updateSpeedLimit` sets the speed limit to
-    50% of the maximum speed (i.e., to `maxSpeed*/2`)
+    50% of the maximum speed (i.e., to `maxSpeed/2`)
     if the total contamination exceeds the contamination alarm limit,
     and to the maximum speed otherwise.
 
@@ -555,6 +559,8 @@ are encapsulated in a different class hierarchy. In what follows: we
 describe how to encapsulate algorithms for switching traffic lights; how
 to encapsulate algorithms for removing vehicles from the queues; finally
 describe the class `Junction` that uses these algorithms.
+
+##### Light Switching Strategies
 
 This strategy deals with deciding which incoming road gets a green
 light. It is modeled by the following interface in the package
@@ -640,6 +646,8 @@ Strategy `MostCrowdedStrategy` behaves as follows:
     there is more than one with the same maximal size, it picks the
     first one that it finds during the search. Note that it might return
     `currGreen`.
+
+##### Dequeuing Strategies
 
 This strategy deals with removing vehicles from the queue of the road
 with a green light. It is modeled by the following interface in the
