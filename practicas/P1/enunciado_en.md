@@ -675,6 +675,8 @@ We have two dequeuing strategies (in the package
     `q`) itself. The order should be the same as when
     iterating `q`.
 
+##### Class Junction
+
 The functionality of a junction is implemented by a class
 `Junction`, that extends `SimulatedObject` and
 is placed in the package `simulator.model`.
