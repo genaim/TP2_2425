@@ -126,7 +126,7 @@ In this part we describe the classes that define the logic of the
 traffic simulator: in Section [*Simulated Objects*](#simulated-objects)
 we describe the different classes required to
 model junctions, roads, and vehicles; in
-Section [*Roads*](#roads) we describe a class that will be used to group
+Section [*Road-Map*](#road-map) we describe a class that will be used to group
 all simulated objects, that we refer to as *the road-map*; in
 Section [*Events*](#events) we describe the different classes for events (to
 create vehicles, junction, roads, and change some of their properties);
