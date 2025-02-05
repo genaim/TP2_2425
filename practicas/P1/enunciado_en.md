@@ -444,7 +444,9 @@ protected):
         the current simulation step.
 
     (3) traverses the list of vehicles (from first to last), and for
-        each vehicle:
+        each vehicle: (a) set the vehicle’s speed to the value returned by calculateVehicleSpeed; (b) calls the
+vehicle’s advance method. Recall sorting the list of vehicles by location at the
+end.
 
         Recall sorting the list of vehicles by location at the end.
 
