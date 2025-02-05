@@ -672,7 +672,7 @@ We have two dequeuing strategies (in the package
 
 -   Strategy `MoveAllStrategy` returns a list of all
     vehicles that are in `q` (do not return
-    `q`) itself. The order should be the same as when
+    `q` itself). The order should be the same as when
     iterating `q`.
 
 ##### Class Junction
@@ -768,7 +768,7 @@ package protected):
     follow:
 
     1.  uses the *dequeuing strategy* to compute a list of vehicles that
-        should be advanced, and then ask these vehicles to move to their
+        should be advanced (from the road with a green light), and then ask these vehicles to move to their
         next roads and remove them from the corresponding queue.
 
     2.  uses the *light switching strategy* to compute the index of the
@@ -906,7 +906,7 @@ were added to the event queue. Executing an event is done by calling a
 corresponding method.
 
 We first define an abstract base-class `Event` (in package
-`simulator.model` to model an event:
+`simulator.model`) to model an event:
 
     package simulator.model;
 
@@ -933,7 +933,7 @@ We first define an abstract base-class `Event` (in package
       @Override
       public int compareTo(Event o) {
         // TODO complete the method to compare events according to their _time, and when
-	// _time is equal it compares the _time_stamp;
+        // _time is equal it compares the _time_stamp;
       }
 
       abstract void execute(RoadMap map);
@@ -941,7 +941,7 @@ We first define an abstract base-class `Event` (in package
 
 Field `_time` is the time at which this event should be
 executed, field `_time_stamp` is used to check which event was 
-created first when is equal `_time`,
+created first when `_time` is equal,
 and method `execute` is the one called by the
 simulator to execute the event. The functionality of this method is
 defined in subclasses.
@@ -1051,12 +1051,12 @@ Class `TrafficSimulator` maintains (at least) the following
 information as *instance fields* in its state (recall that it is
 forbidden to declare fields as `public`):
 
--   *road-map* of type (of type `RoadMap`): a road-map in
+-   *road-map* (of type `RoadMap`): a road-map in
     which all simulated objects are stored.
 
 -   *a priorty queue of events* (of type `Queue<Event>`): a  queue of
     events to be executed. The priority is determined by the time 
-    of the events, and if the time is equal the one that was added first
+    of the events, and if the time is equal the one that was created first
     is polled first -- this is done by `compareTo` of the class `Event`.
     Use `PriorityQueue<Event>` to instanciate this attribute.
 
@@ -1071,16 +1071,15 @@ should maintain visibility modifiers as described below -- no modifier
 means package protected):
 
 -   `public void addEvent(Event e)`: adds the event
-    `e` to the list of events. Recall that the list of
-    events should be maintained sorted as described above.
+    `e` to the list of events.
 
 -   `public void advance()`: it advances the state of the
     simulation as follows (**the order is important!**):
 
     1.  increments the *simulation time* field by one.
 
-    2.  executes all events whose time is as current the *simulation
-        time* and removes it from the list.
+    2.  executes all events whose time is as the current *simulation
+        time* and removes them from the queue.
 
     3.  calls method `advance` of all junctions.
 
@@ -1184,7 +1183,7 @@ generic class `Builder<T>`:
           throw new IllegalArgumentException("Invalid type/desc");
 	  
         _type_tag = type_tag;
-       _desc = desc;
+        _desc = desc;
       }
 
       public String get_type_tag() {
@@ -1321,8 +1320,6 @@ Builder `MostCrowdedStrategyBuilder` creates an instance of
 
 Key `timeslot` is optional, its default value is 1.
 
-In both cases above, key `timeslot` is optional, its default value is
-1.
 
 Once the above builders are defined, we can use them to create a
 corresponding factory as follows:
@@ -1499,7 +1496,7 @@ corresponding factory as follows:
 
 ### The Controller 
 
-The controller is implemented by s class `Controller`, and
+The controller is implemented by a class `Controller`, and
 should be placed in the package `simulator.control`. It
 is responsible for
 
