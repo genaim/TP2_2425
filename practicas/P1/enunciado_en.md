@@ -83,7 +83,7 @@ expected one -- see Section [*Other Comments*](#other-comments).
 ## Traffic Simulator Overview
 
 Computers allow us to model the world. Simulations can run these models
-and help us to understand them better;, if we are lucky, apply this
+and help us to understand them better, if we are lucky, apply this
 understanding to the real world. The assignments of TP2 will ask you to
 build and refine a traffic simulator, which will model vehicles, roads,
 and junctions, and manages contamination. You will be able to test
