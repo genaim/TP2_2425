@@ -113,4 +113,4 @@ In all simulated objects, the `report()` method should return a JSON representat
 
 **Testing**
 
-When you have finished implementing these classes, test them using the corresponding JUnit tests: `VehicleTest`, `RoadTest`, `CityRoadTest`, `InterCityRoadTest`, `JunctionTest`, `MostCrowdedStrategyTest`, `RoundRobinStrategyTest`, `MoveFirstStrategyTest`, and `MoveAllStrategyTest`.
+When you have finished implementing these classes, test them using the corresponding JUnit tests: `VehicleTest`, `CityRoadTest`, `InterCityRoadTest`, `JunctionTest`, `MostCrowdedStrategyTest`, `RoundRobinStrategyTest`, `MoveFirstStrategyTest`, and `MoveAllStrategyTest`.
