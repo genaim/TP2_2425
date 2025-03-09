@@ -1,6 +1,6 @@
 # Assignment 2: Graphical User Interface for the Traffic Simulator
 
-**Due date**: April 23, 2025 at 08:30am.
+**Due date**: April 22, 2025 at 08:30am.
 
 **Demo**: [demo.mp4](./demo.mp4)
 
