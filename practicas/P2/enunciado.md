@@ -1,6 +1,6 @@
 # Práctica 2:  Interfaz gráfica para el simulador de tráfico
 
-**Fecha de entrega**: 23 de abril de 2025 a las 08:30am.
+**Fecha de entrega**: 22 de abril de 2025 a las 08:30am.
 
 **Demo**: [demo.mp4](./demo.mp4)
 
