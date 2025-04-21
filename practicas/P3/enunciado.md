@@ -40,6 +40,7 @@ A continuación, cambia la funcionalidad de los botones  ![run](run.png) y  ![st
 - Cuando se haga clic en ![run](run.png), desactiva todos los botones salvo ![stop](stop.png) y crea un nuevo hilo (asigna esa referencia a **_thread**) que hará lo siguiente:  
   (1) Llama a **run_sim** con el número de pasos y el delay especificados en los correspondientes componentes **JSpinner**.  
   (2) Habilita todos los botones, es decir, cuando termine la llamada a **run_sim**.
+  (3) Asignar `null` al atributo `_thread`.
 
 - Cuando se haga clic en ![stop](stop.png), si hay un hilo ejecutándose, es decir, si **_thread** es distinto de `null`, entonces interrúmpelo para salir del bucle `while` y de este modo termina el hilo.
 
