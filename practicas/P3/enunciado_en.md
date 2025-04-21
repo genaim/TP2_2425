@@ -40,6 +40,7 @@ Next, change the functionality of buttons ![run](run.png) and ![stop](stop.png) 
 
   1. Calls `run_sim` with the number of steps and delay as specified in the corresponding `JSpinner` components.
   2. Enables all buttons, i.e., when coming back from `run_sim`.
+  3. Assign `null` to field `_thread`.
 
 - When ![stop](stop.png) is clicked, if there is a thread running, i.e., `_thread` is different from `null`, then interrupt it in order to exit the while loop and thus terminate the thread.
 
