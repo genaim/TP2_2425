@@ -2,7 +2,7 @@
 
 ## Overview
 
-In assignment 2, we have described two approaches for implementing the functionality of the buttons ![run](Practica3/run.png) and ![stop](Practica3/stop.png):
+In assignment 2, we have described two approaches for implementing the functionality of the buttons ![run](run.png) and ![stop](stop.png):
 
 1. In the first, we used the events queue of `Swing` in order to perform the recursive calls to `run_sim`, and thus, between one call and another to `_ctrl.run(1)` Swing could refresh the view and handle interactions with the user.
 2. In the second, we suggested to change method `run_sim` to simply call `_ctrl.run(n)`, in which case the view remains blocked while the simulator is executing and we only see the final result.
