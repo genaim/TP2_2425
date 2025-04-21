@@ -11,7 +11,7 @@ Although we have achieved a reasonable behaviour with the first approach, when t
 
 ## Using Java Threads to Improve Responsivity of the GUI
 
-![The Graphical User Interface](Practica3/gui.png)
+![The Graphical User Interface](gui.png)
 
 Change the control panel to include a new *Delay* `JSpinner` (with minimum value 0, maximum value 1000, and step size 1) and a corresponding label -- see the figure above. Its value represents a delay between consecutive simulation steps, since now the execution will be faster.
 
@@ -32,16 +32,16 @@ In step 1, execute the simulator a single step and catch any exception that is t
 
 In step 2, use `Thread.sleep` to sleep the current thread for `delay` milliseconds. Recall that if a thread is interrupted while sleeping, the interruption flag is not set to `true` but rather an exception is thrown. Thus, in such case, you should interrupt the current thread again when catching the corresponding exception in order to exit the loop (or simply exit the method using `return`).
 
-Next, change the functionality of buttons ![run](Practica3/run.png) and ![stop](Practica3/stop.png) in order to execute `run_sim` in a new thread as follows:
+Next, change the functionality of buttons ![run](run.png) and ![stop](stop.png) in order to execute `run_sim` in a new thread as follows:
 
 - Add a new field called `_thread` of type `java.lang.Thread` to the class `ControlPanel`, and make it `volatile` since it will be changed from different threads.
 
-- When ![run](Practica3/run.png) is clicked, disable all buttons except ![stop](Practica3/stop.png) and create a new thread (and assign the reference to `_thread`) that does the following:
+- When ![run](run.png) is clicked, disable all buttons except ![stop](stop.png) and create a new thread (and assign the reference to `_thread`) that does the following:
 
   1. Calls `run_sim` with the number of steps and delay as specified in the corresponding `JSpinner` components.
   2. Enables all buttons, i.e., when coming back from `run_sim`.
 
-- When ![stop](Practica3/stop.png) is clicked, if there is a thread running, i.e., `_thread` is different from `null`, then interrupt it in order to exit the while loop and thus terminate the thread.
+- When ![stop](stop.png) is clicked, if there is a thread running, i.e., `_thread` is different from `null`, then interrupt it in order to exit the while loop and thus terminate the thread.
 
 Note that the same functionality can be implemented using the `_stopped` field, that we have used in assignment 2, instead of thread interruption. In such case you should declare `_stopped` as `volatile`. However, we want that you practice thread interrupts and thus do not use a solution that is based on the `_stopped` field -- remove this field from the class `ControlPanel`.
 
