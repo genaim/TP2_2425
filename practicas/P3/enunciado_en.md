@@ -51,5 +51,5 @@ This is needed since the observer methods are now executing in a thread that is 
 
 ## Optional
 
-Implement the functionality described in the previous section using a `SwingWorker` instead of creating a new thread every time ![run](Practica3/run.png) is clicked.
+Implement the functionality described in the previous section using a `SwingWorker` instead of creating a new thread every time ![run](run.png) is clicked.
 
