@@ -3,7 +3,7 @@
 
 ## Introducción
 
-En la práctica 2, hemos descrito dos enfoques para implementar la funcionalidad de los botones  ![run](Practica3/run.png) y  ![stop](Practica3/stop.png)
+En la práctica 2, hemos descrito dos enfoques para implementar la funcionalidad de los botones  ![run](run.png) y  ![stop](stop.png)
 
 1. En el primero, utilizamos la cola de eventos de Swing para realizar la llamada recursiva a **run_sim**, y de este modo, entre una llamada y otra a `_ctrl.run(1)` Swing puede actualizar la vista y manejar las interacciones con el usuario.
 
@@ -33,15 +33,15 @@ Este bucle ejecuta n pasos del simulador, pero se detiene si el hilo correspondi
 
 Recuerda que si un hilo se interrumpe mientras duerme, el flag de interrupción no se establece a `true`, sino que se lanza una excepción. Por lo tanto, en tal caso, se debe interrumpir nuevamente el hilo actual al capturar la excepción correspondiente para salir del bucle (o simplemente salir del método con `return`).
 
-A continuación, cambia la funcionalidad de los botones  ![run](Practica3/run.png) y  ![stop](Practica3/stop.png) para ejecutar **run_sim** en un nuevo hilo de la siguiente manera:
+A continuación, cambia la funcionalidad de los botones  ![run](run.png) y  ![stop](stop.png) para ejecutar **run_sim** en un nuevo hilo de la siguiente manera:
 
 - Añade en la clase **ControlPanel** un nuevo atributo llamado **_thread** del tipo `java.util.Thread`, y hazlo **volatile** ya que será modificado desde distintos hilos.
 
-- Cuando se haga clic en ![run](Practica3/run.png), desactiva todos los botones salvo ![stop](Practica3/stop.png) y crea un nuevo hilo (asigna esa referencia a **_thread**) que hará lo siguiente:  
+- Cuando se haga clic en ![run](run.png), desactiva todos los botones salvo ![stop](stop.png) y crea un nuevo hilo (asigna esa referencia a **_thread**) que hará lo siguiente:  
   (1) Llama a **run_sim** con el número de pasos y el delay especificados en los correspondientes componentes **JSpinner**.  
   (2) Habilita todos los botones, es decir, cuando termine la llamada a **run_sim**.
 
-- Cuando se haga clic en ![stop](Practica3/stop.png), si hay un hilo ejecutándose, es decir, si **_thread** es distinto de `null`, entonces interrúmpelo para salir del bucle `while` y de este modo termina el hilo.
+- Cuando se haga clic en ![stop](stop.png), si hay un hilo ejecutándose, es decir, si **_thread** es distinto de `null`, entonces interrúmpelo para salir del bucle `while` y de este modo termina el hilo.
 
 Observar que la misma funcionalidad se puede implementar utilizando el atributo **_stopped**, que hemos utilizado en la práctica 2, en lugar de la interrupción de hilos. En tal caso, se debe declarar **_stopped** como **volatile**. Sin embargo, queremos que practiques las interrupciones de hilos y, por lo tanto, no utilices una solución basada en el atributo **_stopped** (elimina este campo de la clase **ControlPanel**).
 
@@ -49,4 +49,4 @@ Cambia los métodos de observador, en todas las clases de la vista, de modo que 
 
 ## Opcional
 
-Implementa la funcionalidad descrita en la sección anterior utilizando un **SwingWorker** en lugar de crear un nuevo hilo cada vez que se haga clic en ![run](Practica3/run.png).
+Implementa la funcionalidad descrita en la sección anterior utilizando un **SwingWorker** en lugar de crear un nuevo hilo cada vez que se haga clic en ![run](run.png).
